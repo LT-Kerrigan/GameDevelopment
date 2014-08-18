@@ -3,13 +3,11 @@
 Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	triangle = Mesh::GenerateTriangle();
 
-	currentShader = new Shader(SHADERDIR"basicVertex.glsl",
-		SHADERDIR"colourFragment.glsl");
+	currentShader = new Shader(SHADERDIR"BasicVertex.glsl", SHADERDIR"BasicFragment.glsl");
 
 	if(!currentShader->LinkProgram()) {
 		return;
 	}
-
 	init = true;
 }
 Renderer::~Renderer(void)	{
