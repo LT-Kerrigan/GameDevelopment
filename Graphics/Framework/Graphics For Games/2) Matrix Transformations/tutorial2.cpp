@@ -1,15 +1,16 @@
 #pragma comment(lib, "nclgl.lib")
 
-#include "./nclGL/window.h"
+#include "../../nclgl/OGLRenderer.h"
 #include "Renderer.h"
 
 int main() {
-	Window w("Vertex Transformation!",800,600,false);
+	Window w("002_Perspective_vs_Ortho_Projection!",800,600,false);
 	if(!w.HasInitialised()) {
 		return -1;
 	}
 
 	Renderer renderer(w);
+
 	if(!renderer.HasInitialised()) {
 		return -1;
 	}

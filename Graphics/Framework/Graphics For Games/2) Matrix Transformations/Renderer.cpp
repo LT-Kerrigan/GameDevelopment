@@ -6,10 +6,9 @@
 *	::::::::\ `--' /::::::::			@detail	Renderer class	- testing proj. vs ortho.  *
 *																						   *
 ********************************************************************************************/
-
 #include "Renderer.h"
 
-Renderer::Renderer(Window &parent) :OGLRenderer(parent) {
+Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	triangle = Mesh::GenerateTriangle();
 	
 	currentShader = new Shader(SHADERDIR"MatrixVertex.glsl", SHADERDIR"BasicFragment.glsl");
