@@ -20,6 +20,9 @@ public:
 	virtual void Draw();
 	static Mesh* GenerateTriangle();
 
+	void SetTexture(GLuint tex) { texture = tex; }
+	GLuint GetTexture() { return texture; }
+
 protected: 
 	void BufferData();
 
