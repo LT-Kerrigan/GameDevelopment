@@ -1,10 +1,19 @@
+/*******************************************************************************************
+*	          .--.																		   *
+*	::\`--._,'.::.`._.--'/::			@author Ana M. Mihut		@module Graphics       *
+*	::::. `  __::__ ' .:::::   			@alias  LT-Kerrigan			@date 23.08.2014	   *
+*	::::::-:.`'..`'.:-::::::			@link								               *
+*	::::::::\ `--' /::::::::			@detail	Main	- testing texture mapping		   *
+*																						   *
+********************************************************************************************/
+
 #pragma comment(lib, "nclgl.lib")
 
 #include "../../nclGL/window.h"
 #include "Renderer.h"
 
 int main() {
-	Window w("Texturing!", 800,600,false);	 //This is all boring win32 window creation stuff!
+	Window w("003_Texture_Mapping_Swizzle", 800,600,false);	 //This is all boring win32 window creation stuff!
 	if(!w.HasInitialised()) {
 		return -1;
 	}
