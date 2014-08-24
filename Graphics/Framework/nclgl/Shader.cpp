@@ -97,5 +97,5 @@ void	Shader::SetDefaultAttributes()	{
 	glBindAttribLocation(program, COLOUR_BUFFER,  "colour");
 	//glBindAttribLocation(program, NORMAL_BUFFER,  "normal");
 	//glBindAttribLocation(program, TANGENT_BUFFER, "tangent");
-	//glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");
+	glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");
 }
