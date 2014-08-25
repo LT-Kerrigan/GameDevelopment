@@ -7,12 +7,14 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	if (!textures[0] || !textures[1]){
 		return;
 	}
-	positions[0] = Vector3(0, 0, -5);
-	positions[1] = Vector3(0, 0, -5);
+	positions[0] = Vector3(0.2, 0.2, -1);
+	positions[1] = Vector3(0, 0, -1);
+
 	currentShader = new Shader(SHADERDIR"TexturedVertex.glsl", SHADERDIR"TexturedFragment.glsl");
 	if (!currentShader->LinkProgram()){
 		return;
 	}
+
 	usingDepth = false;
 	usingAlpha = false;
 	blendMode = 0;
