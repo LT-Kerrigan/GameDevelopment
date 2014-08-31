@@ -122,5 +122,7 @@ public:
 		o << "\t\t" << m.values[12] << "," << m.values[13] << "," << m.values[14] << "," << m.values [15] << " )" <<std::endl;
 		return o;
 	}
+
+	Matrix4 GetTransposedRotation();
 };
 

@@ -1,3 +1,12 @@
+/*****************************************************************************************
+* 	         .--.              															 *
+* ::\`--._,'.::.`._.--'/::     @author Ana M. Mihut		@course  Graphics				 *
+* ::::.  ` __::__ '  .::::     @alias  LT-Kerrigan		@link    cs.ncl.ac.uk			 *
+* ::::::-:.`'..`'.:-::::::     @date   02.03.2014       @origin  Newcastle 				 *
+* ::::::::\ `--' /::::::::     @title  SceneNode	   	@details Week_2_Tutorial_6		 *
+*																						 *
+******************************************************************************************/
+
 #include "SceneNode.h"
 
 SceneNode::SceneNode(Mesh* mesh, Vector4 colour){
@@ -28,8 +37,11 @@ void SceneNode::Draw(const OGLRenderer &r) {
 void SceneNode::Update(float msec){
 	if (parent)
 		worldTransform = parent->worldTransform * transform;
+
 	else
 		worldTransform = transform;
+
 	for (vector<SceneNode*>::iterator i = children.begin(); i != children.end(); ++i)
 		(*i)->Update(msec);
 }
+
