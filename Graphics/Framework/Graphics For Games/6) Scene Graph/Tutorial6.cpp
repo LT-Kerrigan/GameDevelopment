@@ -1,7 +1,7 @@
-#include "../Framework/window.h"
+#include "../../nclgl/Window.h"
 #include "Renderer.h"
 
-#pragma comment(lib, "framework.lib")
+#pragma comment(lib, "nclgl.lib")
 
 int main() {	
 	Window w("Scene Graphs!", 800,600,false);
