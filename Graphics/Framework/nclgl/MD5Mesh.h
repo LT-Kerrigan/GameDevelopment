@@ -51,7 +51,8 @@ a texture buffer object - a way of treating arbitrary data as a texture, so it c
 accessed via the sampling functionality in a shader. This tends to be significantly faster
 than performing everything on the GPU. 
 */
-//#define MD5_USE_HARDWARE_SKINNING
+
+#define MD5_USE_HARDWARE_SKINNING
 
 #include <fstream>
 #include <string>
