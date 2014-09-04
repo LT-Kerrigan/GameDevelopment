@@ -12,7 +12,7 @@
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	camera = new Camera(0, -90.0f, Vector3(-180, 60, 0));
-	currentShader = new Shader("../../Shaders/TexturedVertex.glsl", "../../Shaders/TexturedFragment.glsl");
+	currentShader = new Shader("../../Shaders/skeletonVertex Commented.glsl", "../../Shaders/TexturedFragment.glsl");
 
 	hellData = new MD5FileData("../../Meshes/hellknight.md5mesh");
 	hellNode = new MD5Node(*hellData);
