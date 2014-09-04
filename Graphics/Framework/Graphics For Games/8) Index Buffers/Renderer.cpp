@@ -11,7 +11,7 @@
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	heightMap = new HeightMap("../../Textures/terrain.raw");
-	camera = new Camera();
+	camera = new Camera(-30.0f, 180.0f, Vector3(0.0f, 500.0f, 0.0f));
 
 	currentShader = new Shader("../../Shaders/TexturedVertex.glsl", "../../Shaders/TexturedFragment.glsl");
 
