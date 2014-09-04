@@ -19,7 +19,7 @@ public:
 
 	static void CreateCube() {
 		OBJMesh*m = new OBJMesh();
-		m->LoadOBJMesh("cube.obj");
+		m->LoadOBJMesh("../../Meshes/cube.obj");
 		cube = m;
 	}
 	static void DeleteCube(){ delete cube; }
