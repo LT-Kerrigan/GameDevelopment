@@ -41,10 +41,12 @@ void Renderer::UpdateScene(float msec){
 }
 
 void Renderer::RenderScene(){
+
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	glUseProgram(currentShader->GetProgram());
 
+	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "weightTex"), MD5_WEIGHT_TEXNUM); glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "transformTex"), MD5_TRANSFORM_TEXNUM);
 	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "diffuseTex"), 0);
 
 	UpdateShaderMatrices();
