@@ -1,7 +1,7 @@
-#include "../Framework/window.h"
-#include "Renderer.h"
+#pragma comment(lib, "nclgl.lib")
 
-#pragma comment(lib, "framework.lib")
+#include "../../nclgl/Window.h"
+#include "Renderer.h"
 
 int main() {	
 	Window w("Post Processing!", 800,600,false);
