@@ -13,6 +13,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent){
 	camera = new Camera(0.0f, 0.0f, Vector3(RAW_WIDTH * HEIGHTMAP_X / 2.0f, 500, RAW_HEIGHT * HEIGHTMAP_Z));
 	heightMap = new HeightMap("../../Textures/terrain.raw");
 	
+	//currentShader = new Shader("../../Shaders/PerPixelVertex.glsl", "../../Shaders/PerPixelFragment.glsl");
 	currentShader = new Shader("../../Shaders/BumpVertex.glsl", "../../Shaders/BumpFragment.glsl");
 
 	heightMap->SetTexture(SOIL_load_OGL_texture("../../Textures/Barren Reds.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
@@ -25,7 +26,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent){
 	SetTextureRepeating(heightMap->GetTexture(), true);
 	SetTextureRepeating(heightMap->GetBumpMap(), true);
 
-	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f, (RAW_HEIGHT*HEIGHTMAP_Z / 2.0f)), Vector4(1,1,1,1), (RAW_WIDTH*HEIGHTMAP_X) / 2.0f);
+	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 100.0f, (RAW_HEIGHT*HEIGHTMAP_Z / 2.0f)), Vector4(1,1,1,1), (RAW_WIDTH*HEIGHTMAP_X) / 2.0f);
 
 	projMatrix = Matrix4::Perspective(1.0f, 15000.0f, (float)width / (float)height, 45.0f);
 
@@ -50,7 +51,6 @@ void Renderer::RenderScene(){
 	glUseProgram(currentShader->GetProgram());
 	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "diffuseTex"), 0);
 	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "bumpTex"), 1);
-
 	glUniform3fv(glGetUniformLocation(currentShader->GetProgram(), "cameraPos"), 1,(float*)&camera->GetPosition());
 
 	UpdateShaderMatrices();
