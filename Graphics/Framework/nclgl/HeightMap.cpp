@@ -8,6 +8,20 @@
 ******************************************************************************************/
 
 #include "HeightMap.h"
+#include "../glm/glm/glm.hpp"
+
+// Enable multitexture blending across heightmap.
+#ifndef ENABLE_MULTITEXTURE
+#define ENABLE_MULTITEXTURE 1
+#endif
+
+// Enable blend constants based on heightmap's slope.
+#ifndef ENABLE_SLOPE_BASED_BLEND
+#define ENABLE_SLOPE_BASED_BLEND 1
+#endif
+
+// Alleviate int - * conversion warning (wizardry)
+#define BUFFER_OFFSET(i) ((char*)NULL +(i))
 
 HeightMap::HeightMap(std::string name){
 	std::ifstream file(name.c_str(), ios::binary);
@@ -57,4 +71,32 @@ HeightMap::HeightMap(std::string name){
 	GenerateNormals();
 	GenerateTangents();
 	BufferData();
+}
+
+// Return ration of _value in [_min, _max]. If its <= _min, ret 0 else ret 1.
+inline float GetPercentage(float value, const float min, const float max) {
+	value = glm::clamp(value, min, max);
+	return (value - min)/(max - min);
+}
+
+// Translate incoming char to float array in [0, 1]. BitSizes{8,16,32}
+// Intel standard byte encoding / little-endian (low order bytes first)
+// For LSB MSB array indices must be reversed forval > 8bit
+inline float GetHeightValue(const unsigned char* data, unsigned char numBytes) {
+	switch (numBytes)
+	{
+	case 1:
+		return (unsigned char)(data[0]) / (float)0xff;
+		break;
+	case 2:
+		return (unsigned short)(data[1] << 8 | data[0]) / (float)0xffff;
+		break;
+	case 4:
+		return (unsigned int)(data[3] << 24 | data[2] << 16 | data[1] << 8 | data[0]) / (float)0xffffffff;
+		break;
+	default:
+		assert(false);  // Height field with non standard pixle sizes
+		break;
+	}
+	return 0.0f;
 }
