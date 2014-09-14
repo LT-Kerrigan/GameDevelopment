@@ -18,6 +18,8 @@ public:
 	~Mesh(void);
 
 	virtual void Draw();
+	virtual void DrawInstance(unsigned int numInstances);
+
 	static Mesh* GenerateTriangle();
 	static Mesh* GenerateQuad();
 
