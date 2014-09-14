@@ -8,6 +8,7 @@
 *****************************************************************************************/
 
 #include "../../nclgl/Mesh.h"
+#include <time.h>
 
 Mesh::Mesh(void) {
 	for (int i = 0; i < MAX_BUFFER; ++i) {
@@ -165,6 +166,38 @@ void Mesh::Draw() {
 	else {
 		glDrawArrays(type, 0, numVertices);
 	}
+	glBindVertexArray(0);
+}
+
+void Mesh::DrawInstance(unsigned int numInstances) {
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glBindVertexArray(arrayObject);
+
+	glDrawArraysInstanced(type, 0, numInstances, numInstances);
+	glBindVertexArray(0);
+}
+
+void Mesh::SetRandomPositions(unsigned int numInstances, float LO, float HI){
+	rndPos = new Vector3[numInstances];
+
+	srand(time(0));
+	for (int i = 0; i < numInstances; ++i) {
+		rndPos[i] = Vector3(LO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (HI - LO))), 
+							DegToRad((rand() / (float)RAND_MAX)*360.0f),
+							LO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (HI - LO))));
+	}
+
+	glBindVertexArray(arrayObject);
+	glGenBuffers(1, &rndPosObject);
+	glBindBuffer(GL_ARRAY_BUFFER, rndPosObject);
+	glBufferData(GL_ARRAY_BUFFER, numInstances * sizeof(Vector3), rndPos, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(MAX_BUFFER + 1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(MAX_BUFFER + 1);
+	glVertexAttribDivisor(MAX_BUFFER + 1, 1);
+
 	glBindVertexArray(0);
 }
 

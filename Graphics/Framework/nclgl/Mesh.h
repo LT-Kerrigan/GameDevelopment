@@ -22,7 +22,7 @@ public:
 
 	static Mesh* GenerateTriangle();
 	static Mesh* GenerateQuad();
-	static Vector3* GenerateRandomPositions();
+    void SetRandomPositions(unsigned int numInstances, float LO, float HI);
 
 	void   SetTexture(GLuint tex) { texture = tex;  }
 	GLuint GetTexture()           { return texture; }
@@ -48,7 +48,10 @@ protected:
 	GLuint   numIndices;
 	Vector2* textureCoords;
 	Vector3* vertices;
+
 	Vector3* rndPos;
+	GLuint   rndPosObject;
+	
 	Vector3* normals;
 	Vector3* tangents;
 	Vector4* colours;
