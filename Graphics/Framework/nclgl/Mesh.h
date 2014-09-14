@@ -27,6 +27,8 @@ public:
 	void SetBumpMap(GLuint tex)   { bumpTexture = tex; }
 	GLuint GetBumpMap()			  { return bumpTexture; }
 
+	Vector3* GetVertices()		  { return vertices; }
+
 protected:
 	void	 BufferData();
 	void	 GenerateNormals();

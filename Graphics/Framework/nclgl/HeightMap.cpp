@@ -48,6 +48,9 @@ HeightMap::HeightMap(std::string name){
 			textureCoords[offset] = Vector2(x * HEIGHTMAP_TEX_X, z * HEIGHTMAP_TEX_Z);
 		}
 	}
+
+	BindToTex(data);
+
 	delete data;
 
 	numIndices = 0;
@@ -99,4 +102,19 @@ inline float GetHeightValue(const unsigned char* data, unsigned char numBytes) {
 		break;
 	}
 	return 0.0f;
+}
+
+void HeightMap::BindToTex(unsigned char* data){
+	//locTex = glGetUniformLocation(grassShader->GetProgram(), "vertexTexture");
+	
+	glGenTextures(1, &vertexTexture);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, vertexTexture);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, RAW_WIDTH, RAW_HEIGHT, 0, GL_RED, GL_UNSIGNED_BYTE, data);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
