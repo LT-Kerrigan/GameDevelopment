@@ -68,8 +68,32 @@ GraphicsFramework/
     ├── Reflective
     └── Particle
 ```
-##Physics Engine
 
+##Physics Engine
+The framework describes physics and real-time algorithms mathematically. The real-time collision detection simulates solid body interaction.
+```
+PhysicsFramework/
+├── Core/
+│   ├── RigidBodies
+│   ├── SoftBodies
+│   ├── Patricles
+|   ├── NumericalIntegration
+|   ├── AngularMotion
+|   ├── CollisionDetection
+|   ├── CollisionResponse
+|   ├── Broadphase
+|   ├── Narrowphase
+|   ├── Impulse
+|   ├── Penalty
+|   ├── Torque
+│   └── FluidDynamics
+├── Tests/
+│   ├── SimpleCollision
+|   ├── CollisionDetectResponse
+|   ├── Damping
+│   └── PenaltyTest
+└── CUDAIntegration/
+```
  
 
 
