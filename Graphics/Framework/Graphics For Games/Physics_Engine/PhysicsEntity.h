@@ -13,6 +13,7 @@
 #include "../../nclgl/Matrix4.h"
 #include "../../nclgl/SceneNode.h"
 
+#define MINIMUM_VELOCITY 0.01f
 
 class PhysicsEntity	{
 public:
@@ -26,6 +27,7 @@ public:
 	Vector3     GetAcceleration()       { return m_acceleration; }
 
 	float		GetInverseMass()		{ return m_invMass; }
+	float       GetDampThreshhold()     { return m_DampThreshold; }
 
 	Quaternion	GetOrientation()		{ return m_orientation; }
 	Vector3		GetAngularVelocity()	{ return m_angularVelocity; }
@@ -51,6 +53,7 @@ protected:
 	Vector3     m_acceleration;
 	float		m_invMass;
 	float       m_Range;
+	float       m_DampThreshold;
 
 	// Angular motion
 	Quaternion  m_orientation;

@@ -22,11 +22,17 @@ PhysicsEntity::~PhysicsEntity(void)	{
 
 }
 
-//You will perform your per-object physics integration, here!
-//I've added in a bit that will set the transform of the
-//graphical representation of this object, too.
-void	PhysicsEntity::Update(float msec) {
-	//FUN GOES HERE
+void PhysicsEntity::Update(float msec) {
+	
+	//Simplex Euler
+	m_linearVelocity += m_linearVelocity + m_acceleration * msec;
+    m_position       += m_position + m_linearVelocity * msec;
+
+	m_linearVelocity = m_linearVelocity * m_DampThreshold;
+
+	if (m_linearVelocity.x < MINIMUM_VELOCITY || m_linearVelocity.y < MINIMUM_VELOCITY || m_linearVelocity.z < MINIMUM_VELOCITY) {
+		m_linearVelocity.ToZero();
+	}
 	
 	if (target) {
 		target->SetTransform(BuildTransform());
@@ -37,15 +43,8 @@ void	PhysicsEntity::Update(float msec) {
 This function simply turns the orientation and position
 of our physics node into a transformation matrix, suitable
 for plugging into our Renderer!
-
-It is cleaner to work with matrices when it comes to rendering,
-as it is what shaders expect, and allow us to keep all of our
-transforms together in a single construct. But when it comes to
-physics processing and 'game-side' logic, it is much neater to
-have seperate orientations and positions.
-
 */
-Matrix4		PhysicsEntity::BuildTransform() {
+Matrix4 PhysicsEntity::BuildTransform() {
 	Matrix4 m = m_orientation.ToMatrix();
 
 	m.SetPositionVector(m_position);
