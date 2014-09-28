@@ -22,6 +22,8 @@ public:
 
 	Vector3		GetPosition()			{ return m_position; }
 	Vector3		GetLinearVelocity()		{ return m_linearVelocity; }
+	Vector3     GetForce()              { return m_force; }
+	Vector3     GetAcceleration()       { return m_acceleration; }
 
 	float		GetInverseMass()		{ return m_invMass; }
 
@@ -29,6 +31,9 @@ public:
 	Vector3		GetAngularVelocity()	{ return m_angularVelocity; }
 
 	Matrix4		BuildTransform();
+
+	Vector3     CalculatePosition();
+	Vector3     CalculateAcceleration();
 
 	virtual void		Update(float msec);
 
@@ -43,7 +48,9 @@ protected:
 	Vector3		m_position;
 	Vector3		m_linearVelocity;
 	Vector3		m_force;
+	Vector3     m_acceleration;
 	float		m_invMass;
+	float       m_Range;
 
 	// Angular motion
 	Quaternion  m_orientation;

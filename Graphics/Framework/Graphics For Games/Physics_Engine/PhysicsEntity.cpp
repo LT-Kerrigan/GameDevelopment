@@ -27,7 +27,7 @@ PhysicsEntity::~PhysicsEntity(void)	{
 //graphical representation of this object, too.
 void	PhysicsEntity::Update(float msec) {
 	//FUN GOES HERE
-
+	
 	if (target) {
 		target->SetTransform(BuildTransform());
 	}
