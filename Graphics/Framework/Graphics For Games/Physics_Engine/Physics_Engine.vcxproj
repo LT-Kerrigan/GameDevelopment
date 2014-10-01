@@ -83,16 +83,21 @@
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PhysicsEntity.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SUVATCalculator.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseClass.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="PhysicsEntity.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="SUVATCalculator.cpp" />
+    <ClCompile Include="TestEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
