@@ -22,7 +22,11 @@ public:
 	virtual void UpdateScene(float msec);
 
 protected:
-	Mesh*   heightMap;
-	Camera* camera;
-	Light*  light;
+	void DrawHeightMap();
+
+	//Mesh*   heightMap;
+	HeightMap* heightMap;
+	Camera*   camera;
+	Light*    light;
+	Shader*   heightMapShader;
 };

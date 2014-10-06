@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{87B5801E-F373-4FD4-9CD4-A75E3B14039D}</ProjectGuid>
     <RootNamespace>SceneManagement</RootNamespace>
-    <ProjectName>Tutorial7 - Scene Management</ProjectName>
+    <ProjectName>Test_07_SceneManagement</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -13,7 +13,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	camera = new Camera(0.0f, 135.0f, Vector3(0, 500, 0));
 	quad = Mesh::GenerateQuad();
 
-	heightMap = new HeightMap("../../Textures/terrain.raw");
+	heightMap = new HeightMap("../../Textures/HeightMap1.raw");
 	heightMap->SetTexture(SOIL_load_OGL_texture("../../Textures/Barren Reds.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	sceneShader = new Shader("../../Shaders/TexturedVertex.glsl", "../../Shaders/TexturedFragment.glsl");
