@@ -76,7 +76,7 @@ PhysicsFramework/
 ├── Core/
 │   ├── RigidBodies
 │   ├── SoftBodies
-│   ├── Patricles
+│   ├── Particles
 |   ├── NumericalIntegration
 |   ├── AngularMotion
 |   ├── CollisionDetection
