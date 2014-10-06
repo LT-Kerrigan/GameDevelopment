@@ -76,7 +76,7 @@ PhysicsFramework/
 ├── Core/
 │   ├── RigidBodies
 │   ├── SoftBodies
-│   ├── Patricles
+│   ├── Particles
 |   ├── NumericalIntegration
 |   ├── AngularMotion
 |   ├── CollisionDetection
@@ -86,6 +86,8 @@ PhysicsFramework/
 |   ├── Impulse
 |   ├── Penalty
 |   ├── Torque
+|   ├── Spring
+|   ├── SUVAC
 │   └── FluidDynamics
 ├── Tests/
 │   ├── SimpleCollision
