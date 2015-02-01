@@ -27,7 +27,6 @@ void main(void){
 	if(atten == 0.0) {
 		discard;
 	} 
-}
 
 vec3 incident = normalize(lightPos - pos);
 vec3 viewDir  = normalize(cameraPos - pos);
@@ -39,3 +38,4 @@ float sFactor = pow(rFactor, 33.0);
 
 gl_FragColor[0] = vec4(lightColour.xyz * lambert * atten, 1.0);
 gl_FragColor[1] = vec4(lightColour.xyz * sFactor * atten * 0.33, 1.0);
+}

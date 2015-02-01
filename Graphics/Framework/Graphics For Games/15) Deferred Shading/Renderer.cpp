@@ -29,7 +29,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 		}
 	}
 
-	heightMap = new HeightMap("../../Textures/terrain.raw");
+	heightMap = new HeightMap("../../Textures/HeightMapMedium.raw");
 	heightMap->SetTexture(SOIL_load_OGL_texture("../../Textures/Barren Reds.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 	heightMap->SetBumpMap(SOIL_load_OGL_texture("../../Textures/Barren RedsDOT3.tga", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 

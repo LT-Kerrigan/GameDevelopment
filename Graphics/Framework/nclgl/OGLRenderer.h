@@ -2,21 +2,23 @@
 /*
 Class:OGLRenderer
 Author:Rich Davison	<richard.davison4@newcastle.ac.uk>
-Description:Abstract base class for the graphics tutorials. Creates an OpenGL 
-3.2 CORE PROFILE rendering context. Each lesson will create a renderer that 
+Description:Abstract base class for the graphics tutorials. Creates an OpenGL
+3.2 CORE PROFILE rendering context. Each lesson will create a renderer that
 inherits from this class - so all context creation is handled automatically,
 but students still get to see HOW such a context is created.
 
--_-_-_-_-_-_-_,------,   
+-_-_-_-_-_-_-_,------,
 _-_-_-_-_-_-_-|   /\_/\   NYANYANYAN
 -_-_-_-_-_-_-~|__( ^ .^) /
-_-_-_-_-_-_-_-""  ""   
+_-_-_-_-_-_-_-""  ""
 
 */
 #include "Common.h"
+
 #include <string>
 #include <fstream>
 #include <vector>
+
 #include "GL/glew.h"
 #include "GL/wglew.h"
 
@@ -30,8 +32,8 @@ _-_-_-_-_-_-_-""  ""
 #include "Window.h"
 #include "light.h"
 
-#include "Shader.h"		
-#include "Mesh.h"		
+#include "Shader.h"		//Students make this file...
+#include "Mesh.h"		//And this one...
 
 using std::vector;
 
@@ -73,7 +75,7 @@ struct DebugDrawData {
 
 	~DebugDrawData() {
 		glDeleteVertexArrays(1, &array);
-		glDeleteBuffers(2,buffers);
+		glDeleteBuffers(2, buffers);
 	}
 
 	inline void Clear() {
@@ -81,13 +83,13 @@ struct DebugDrawData {
 		colours.clear();
 	}
 
-	inline void AddLine(const Vector3 &from,const Vector3 &to,const Vector3 &fromColour,const Vector3 &toColour) {
+	inline void AddLine(const Vector3 &from, const Vector3 &to, const Vector3 &fromColour, const Vector3 &toColour) {
 		lines.push_back(from);
 		lines.push_back(to);
 
 		colours.push_back(fromColour);
 		colours.push_back(toColour);
-	} 
+	}
 };
 
 
@@ -99,23 +101,23 @@ public:
 	OGLRenderer(Window &parent);
 	virtual ~OGLRenderer(void);
 
-	virtual void	RenderScene()		= 0;
+	virtual void	RenderScene() = 0;
 	virtual void	UpdateScene(float msec);
 	void			SwapBuffers();
 
-	bool			HasInitialised() const;	
-	
-	static void		DrawDebugLine  (DebugDrawMode mode, const Vector3 &from,const Vector3 &to,const Vector3 &fromColour = Vector3(1,1,1),const Vector3 &toColour = Vector3(1,1,1));
-	static void		DrawDebugBox   (DebugDrawMode mode, const Vector3 &at,const Vector3 &scale,const Vector3 &colour = Vector3(1,1,1));
-	static void		DrawDebugCross (DebugDrawMode mode, const Vector3 &at,const Vector3 &scale,const Vector3 &colour = Vector3(1,1,1));
-	static void		DrawDebugCircle(DebugDrawMode mode, const Vector3 &at,const float radius,const Vector3 &colour = Vector3(1,1,1));	
-	
+	bool			HasInitialised() const;
+
+	static void		DrawDebugLine(DebugDrawMode mode, const Vector3 &from, const Vector3 &to, const Vector3 &fromColour = Vector3(1, 1, 1), const Vector3 &toColour = Vector3(1, 1, 1));
+	static void		DrawDebugBox(DebugDrawMode mode, const Vector3 &at, const Vector3 &scale, const Vector3 &colour = Vector3(1, 1, 1));
+	static void		DrawDebugCross(DebugDrawMode mode, const Vector3 &at, const Vector3 &scale, const Vector3 &colour = Vector3(1, 1, 1));
+	static void		DrawDebugCircle(DebugDrawMode mode, const Vector3 &at, const float radius, const Vector3 &colour = Vector3(1, 1, 1));
+
 	void			SetAsDebugDrawingRenderer() {
 		debugDrawingRenderer = this;
 	}
 
 protected:
-	virtual void	Resize(int x, int y);	
+	virtual void	Resize(int x, int y);
 	void			UpdateShaderMatrices();
 	void			SetCurrentShader(Shader*s);
 
@@ -127,7 +129,7 @@ protected:
 	void			DrawDebugOrtho(Matrix4*matrix = 0);
 
 	Shader* currentShader;
-	
+
 
 	Matrix4 projMatrix;		//Projection matrix
 	Matrix4 modelMatrix;	//Model matrix. NOT MODELVIEW
@@ -148,11 +150,10 @@ protected:
 	static Shader*		  debugDrawShader;
 
 #ifdef _DEBUG
-	static void CALLBACK DebugCallback(GLuint source, GLuint type,GLuint id, GLuint severity,
-									   int length, const char* message, void* userParam);
+	static void CALLBACK DebugCallback(GLuint source, GLuint type, GLuint id, GLuint severity,
+		int length, const char* message, void* userParam);
 #endif
 
 	static bool	drawnDebugOrtho;
 	static bool	drawnDebugPerspective;
-
 };
