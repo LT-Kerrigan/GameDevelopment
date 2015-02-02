@@ -7,7 +7,7 @@
 *																						 *
 *****************************************************************************************/
 
-#include "../../nclgl/Mesh.h"
+#include "../../GraphicsFramework/Mesh.h"
 #include <time.h>
 
 Mesh::Mesh(void) {

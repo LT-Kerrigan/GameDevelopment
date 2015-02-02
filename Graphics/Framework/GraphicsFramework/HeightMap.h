@@ -12,8 +12,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "../nclgl/Vector3.h"
-#include "../nclgl/Mesh.h"
+#include "../GraphicsFramework/Vector3.h"
+#include "../GraphicsFramework/Mesh.h"
 
 #define RAW_WIDTH		513
 #define RAW_HEIGHT		513
