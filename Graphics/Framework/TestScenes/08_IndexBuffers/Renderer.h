@@ -9,9 +9,9 @@
 
 #pragma once
 
-#include "../../nclgl/OGLRenderer.h"
-#include "../../nclgl/Camera.h"
-#include "../../nclgl/HeightMap.h"
+#include "../../GraphicsFramework/OGLRenderer.h"
+#include "../../GraphicsFramework/Camera.h"
+#include "../../GraphicsFramework/HeightMap.h"
 
 class Renderer : public OGLRenderer {
 public:

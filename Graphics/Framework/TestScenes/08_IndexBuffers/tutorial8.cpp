@@ -1,10 +1,10 @@
-#include "../nclgl/window.h"
+#include "../GraphicsFramework/window.h"
 #include "Renderer.h"
 
 #pragma comment(lib, "nclgl.lib")
 
 int main() {	
-	Window w("Scene Management!", 800,600,false);
+	Window w("Index Buffers!", 800,600,false);
 	if(!w.HasInitialised()) {
 		return -1;
 	}
@@ -21,6 +21,5 @@ int main() {
 		renderer.UpdateScene(w.GetTimer()->GetTimedMS());
 		renderer.RenderScene();
 	}
-
 	return 0;
 }
