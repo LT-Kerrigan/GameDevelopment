@@ -8,9 +8,9 @@
 ******************************************************************************************/
 
 #pragma once
-#include "../../nclgl/OGLRenderer.h"
-#include "../../nclgl/SceneNode.h"
-#include "../../nclgl/Camera.h"
+#include "../../GraphicsFramework/OGLRenderer.h"
+#include "../../GraphicsFramework/SceneNode.h"
+#include "../../GraphicsFramework/Camera.h"
 #include "CubeRobot.h"
 
 class Renderer : public OGLRenderer {

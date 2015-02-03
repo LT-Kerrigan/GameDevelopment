@@ -8,8 +8,8 @@
 ******************************************************************************************/
 
 #pragma once
-#include "../../nclgl/SceneNode.h"
-#include "../../nclgl/OBJMesh.h"
+#include "../../GraphicsFramework/SceneNode.h"
+#include "../../GraphicsFramework/OBJMesh.h"
 
 class CubeRobot : public SceneNode {
 public:

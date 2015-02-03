@@ -77,7 +77,7 @@
   <ItemGroup>
     <ClCompile Include="CubeRobot.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Tutorial6.cpp" />
+    <ClCompile Include="Test_06.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubeRobot.h" />

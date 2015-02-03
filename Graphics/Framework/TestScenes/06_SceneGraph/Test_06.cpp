@@ -1,4 +1,4 @@
-#include "../../nclgl/Window.h"
+#include "../../GraphicsFramework/Window.h"
 #include "Renderer.h"
 
 #pragma comment(lib, "nclgl.lib")
