@@ -1,25 +1,19 @@
 /*
-In this code tutorial, we're going to perform a 2D to 3D projection, turning 
-a mouse pointer position into a 3D position in space. What good is that?
-Well, it allows us to determine which object in 3D space is underneath the
+perform a 2D to 3D projection, turning a mouse pointer position into a 3D position in space. 
+What good is that?
+Well, it allows to determine which object in 3D space is underneath the
 mouse! In 'old' OpenGL, there was a special 'selection' mode, which allowed
 you to determine which pixel belonged to which object, but it was really slow
 and was eventually removed from OpenGL 3 onwards. So instead, we can do it
 using a bit of vector math! By projecting a mouse pointer from 2D to 3D, we 
 can form a direction vector known as a Ray, and using that Ray, test whether
 we can draw a line through any object under the mouse. We can do this as,
-in the Scene Management tutorial, we gave scene nodes a bound sphere - this
+in the Scene Management test, we gave scene nodes a bound sphere - this
 was just for frustum culling, but works just as well for our purposes here.
 This process is known as 'picking'. In our simple test program, we'll 'pick'
 every object under the mouse pointer, but the Ray class has been set up to
 be easily extended so that objects hit by the mouse can be sorted into 
 a distance order.
-
-
-When you run this program, you'll see a load of boxes. When you press down the 
-mouse, you'll see a triangular mouse pointer, if there's a box under it, it'll
-turn blue. Sounds basic, but it'll show you how you can click on objects in
-your games!
 
 On a more general level, Ray casting can be used to see whether an object has
 something in front of it (the object casts a ray out in front of it and sees

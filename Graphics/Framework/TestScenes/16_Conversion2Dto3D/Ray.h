@@ -1,9 +1,4 @@
 /******************************************************************************
-Class:Ray
-Implements:
-Author:Rich Davison
-Description:A simple Ray class. 
-
 A ray is a line in space. It has an origin, and a direction vector. The line
 extends infinitely along the direction vector. 
 
@@ -22,8 +17,8 @@ _-_-_-_-_-_-_-""  ""
 *//////////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#include "./NCLGL/Vector3.h"
-#include "./NCLGL/SceneNode.h"
+#include "./GraphicsFramework/Vector3.h"
+#include "./GraphicsFramework/SceneNode.h"
 
 #include <vector>
 using namespace std;

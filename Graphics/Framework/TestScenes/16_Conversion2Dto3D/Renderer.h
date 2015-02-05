@@ -1,10 +1,10 @@
 #pragma once
 
-#include "./NCLGL/OGLRenderer.h"
-#include "./NCLGL/Mesh.h"
-#include "./NCLGL/camera.h"
-#include "./NCLGL/SceneNode.h"
-#include "./NCLGL/OBJMesh.h"
+#include "./GraphicsFramework/OGLRenderer.h"
+#include "./GraphicsFramework/Mesh.h"
+#include "./GraphicsFramework/camera.h"
+#include "./GraphicsFramework/SceneNode.h"
+#include "./GraphicsFramework/OBJMesh.h"
 #include "Ray.h"
 
 class Renderer : public OGLRenderer	{
