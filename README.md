@@ -1,6 +1,6 @@
 # Rendering  & Physics Engine with OpenGL 4.3.
 
-The current project consists of a graphics framework developed in C++, OpenGL 4.3., and GLEW as the foundation. On top of this framework the physics engine was developed using C++ and CUDA. 
+The current project consists of a graphics framework developed in C++, OpenGL 4.3., GLEW, and GLSL as the foundation. On top of this framework the physics engine was developed using C++ and CUDA. 
 
 ## Table of contents
 
