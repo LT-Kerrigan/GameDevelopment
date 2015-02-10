@@ -8,8 +8,8 @@
 ********************************************************************************************/
 
 #pragma once
-#include "./nclgl/OGLRenderer.h"
-#include "../../nclgl/Camera.h"
+#include "./GraphicsFramework/OGLRenderer.h"
+#include "../../GraphicsFramework/Camera.h"
 
 class Renderer : public OGLRenderer {
 public:

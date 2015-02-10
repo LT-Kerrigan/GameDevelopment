@@ -1,7 +1,7 @@
 #pragma comment(lib, "nclgl.lib")
 
-#include "../../nclgl/OGLRenderer.h"
-#include "../../nclgl/Window.h"
+#include "../../GraphicsFramework/OGLRenderer.h"
+#include "../../GraphicsFramework/Window.h"
 #include "Renderer.h"
 
 int main() {

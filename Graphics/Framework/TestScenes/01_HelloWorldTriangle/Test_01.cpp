@@ -1,10 +1,10 @@
 #pragma comment(lib, "nclgl.lib")
 
-#include "./nclGL/window.h"
+#include "./GraphicsFramework/window.h"
 #include "Renderer.h"
 
 int main()	{
-	Window w("001_HelloWorld_Of_OpenGL", 800 , 600, false);
+	Window w("01_HelloWorld_Of_OpenGL", 800 , 600, false);
 
 	if(!w.HasInitialised()) {
 		return -1;
