@@ -1,14 +1,26 @@
 #include "Shader.h"
 
-Shader::Shader(string vFile, string fFile, string gFile)	{
+Shader::Shader(string vFile, string fFile, string gFile, string tcFile, string teFile)	{
 	program		= glCreateProgram();
-	objects[SHADER_VERTEX]		= GenerateShader(vFile	 ,GL_VERTEX_SHADER);
-	objects[SHADER_FRAGMENT]	= GenerateShader(fFile,GL_FRAGMENT_SHADER);
-	objects[SHADER_GEOMETRY]	= 0;
+	objects[SHADER_VERTEX]		 = GenerateShader(vFile,  GL_VERTEX_SHADER);
+	objects[SHADER_FRAGMENT]	 = GenerateShader(fFile,  GL_FRAGMENT_SHADER);
+	objects[SHADER_GEOMETRY]     = 0;
+	objects[SHADER_TESS_CONTROL] = 0;
+	objects[SHADER_TESS_EVAL]    = 0;
 
 	if(!gFile.empty()) {
 		objects[SHADER_GEOMETRY]	= GenerateShader(gFile,GL_GEOMETRY_SHADER);
 		glAttachShader(program,objects[SHADER_GEOMETRY]);
+	}
+
+	if (!tcFile.empty()) {
+		objects[SHADER_TESS_CONTROL] = GenerateShader(tcFile, GL_TESS_CONTROL_SHADER);
+		glAttachShader(program, objects[SHADER_TESS_CONTROL]);
+	}
+
+	if (!teFile.empty()) {
+		objects[SHADER_TESS_EVAL] = GenerateShader(teFile, GL_TESS_EVALUATION_SHADER);
+		glAttachShader(program, objects[SHADER_TESS_EVAL]);
 	}
 
 	glAttachShader(program,objects[SHADER_VERTEX]);
@@ -18,7 +30,8 @@ Shader::Shader(string vFile, string fFile, string gFile)	{
 }
 
 Shader::~Shader(void)	{
-	for(int i = 0; i < 3; ++i) {
+	// TO DO: use enum size >_<
+	for(int i = 0; i < 5; ++i) {
 		glDetachShader(program, objects[i]);
 		glDeleteShader(objects[i]);
 	}
@@ -98,4 +111,5 @@ void Shader::SetDefaultAttributes()	{
 	glBindAttribLocation(program, NORMAL_BUFFER,  "normal");
 	glBindAttribLocation(program, TANGENT_BUFFER, "tangent");
 	glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");
+	//TO DO: gl_FogCoord 5 maybe?
 }

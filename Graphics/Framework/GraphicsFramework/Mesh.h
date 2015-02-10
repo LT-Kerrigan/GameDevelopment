@@ -23,6 +23,7 @@ public:
 	static Mesh* GenerateTriangle();
 	static Mesh* GenerateQuad();
 	static Mesh* GeneratePoints(unsigned int _NumPoints);
+	static Mesh* GenerateQuadPatch();
 
     void SetRandomPositions(unsigned int numInstances, float LO, float HI);
 

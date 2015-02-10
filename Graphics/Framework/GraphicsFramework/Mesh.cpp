@@ -105,6 +105,29 @@ Mesh* Mesh::GeneratePoints(unsigned int _NumPoints) {
 	return m;
 }
 
+Mesh* Mesh::GenerateQuadPatch() {
+	Mesh* m        = new Mesh;
+	m->numVertices = 4;
+	m->type        = GL_PATCHES;
+	
+	m->vertices      = new Vector3[m->numVertices];
+	m->textureCoords = new Vector2[m->numVertices];
+
+	m->vertices[0] = Vector3(-1.0f, -1.0f, 0.0f);
+	m->vertices[1] = Vector3(-1.0f,  1.0f, 0.0f);
+	m->vertices[3] = Vector3( 1.0f, -1.0f, 0.0f);
+	m->vertices[4] = Vector3( 1.0f,  1.0f, 0.0f);
+
+	m->textureCoords[0] = Vector2(0.0f, 1.0f);
+	m->textureCoords[1] = Vector2(0.0f, 0.0f);
+	m->textureCoords[2] = Vector2(1.0f, 1.0f);
+	m->textureCoords[3] = Vector2(1.0f, 1.0f);
+
+	m->BufferData(); // VAO data + VBO setup
+
+	return m;
+}
+
 void Mesh::BufferData(){
 	
 	glBindVertexArray(arrayObject);
