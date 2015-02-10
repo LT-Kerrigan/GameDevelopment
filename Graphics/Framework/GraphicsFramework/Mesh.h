@@ -22,6 +22,8 @@ public:
 
 	static Mesh* GenerateTriangle();
 	static Mesh* GenerateQuad();
+	static Mesh* GeneratePoints(unsigned int _NumPoints);
+
     void SetRandomPositions(unsigned int numInstances, float LO, float HI);
 
 	void   SetTexture(GLuint tex) { texture = tex;  }

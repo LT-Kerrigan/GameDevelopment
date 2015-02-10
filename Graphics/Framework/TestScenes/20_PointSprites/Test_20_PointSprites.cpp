@@ -9,11 +9,11 @@
 
 #pragma comment(lib, "nclgl.lib")
 
-#include "../../nclGL/window.h"
+#include "../../GraphicsFramework/window.h"
 #include "Renderer.h"
 
 int main()	{
-	Window w("Test_20_GeometryShaderTest", 800, 600, false);
+	Window w("Test_20_PointSprites", 800, 600, false);
 
 	if (!w.HasInitialised()) {
 		return -1;

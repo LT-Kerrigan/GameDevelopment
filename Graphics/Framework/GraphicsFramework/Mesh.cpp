@@ -98,6 +98,13 @@ Mesh* Mesh::GenerateQuad() {
 	return m;
 }
 
+Mesh* Mesh::GeneratePoints(unsigned int _NumPoints) {
+	Mesh* m = new Mesh();
+	//TO DO: gl draw points
+	m->BufferData();
+	return m;
+}
+
 void Mesh::BufferData(){
 	
 	glBindVertexArray(arrayObject);

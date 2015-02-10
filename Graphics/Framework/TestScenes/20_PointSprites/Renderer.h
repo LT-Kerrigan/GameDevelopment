@@ -8,9 +8,9 @@
 ******************************************************************************************/
 
 #pragma once
-#include "../../nclgl/OGLRenderer.h"
-#include "../../nclgl/Camera.h"
-#include "../../nclgl/Frustum.h"
+#include "../../GraphicsFramework/OGLRenderer.h"
+#include "../../GraphicsFramework/Camera.h"
+#include "../../GraphicsFramework/Frustum.h"
 #include <algorithm>
 
 class Renderer : public OGLRenderer {
