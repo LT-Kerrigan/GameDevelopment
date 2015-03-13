@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Rendering Engine by LT-Kerrigan</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Rendering Engine</h1>
+        <h2>Graphics and Physics Engine developed from the ground up using OpenGL 4.3, C++, GLEW, and CUDA.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/LT-Kerrigan/RenderingEngine/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/LT-Kerrigan/RenderingEngine/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/LT-Kerrigan/RenderingEngine" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="rendering---physics-engine-with-opengl-43" class="anchor" href="#rendering---physics-engine-with-opengl-43" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rendering  &amp; Physics Engine with OpenGL 4.3.</h1>
+
+<p>The current project consists of a graphics framework developed in C++, OpenGL 4.3., GLEW, and GLSL as the foundation. On top of this framework the physics engine was developed using C++ and CUDA. </p>
+
+<h2>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of contents</h2>
+
+<ul>
+<li><a href="#graphics-engine">Graphics engine</a></li>
+<li><a href="#physics-engine">Physics engine</a></li>
+<li><a href="#dev-tools">Tools used</a></li>
+<li><a href="#available-demos">Available demos</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#about-creator">About the creator</a></li>
+<li><a href="#copyright">Copyright and license</a></li>
+</ul>
+
+<h2>
+<a id="graphics-engine" class="anchor" href="#graphics-engine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Graphics engine</h2>
+
+<p>Built from the ground up without relying on GLU/GLUT, and features only OpenGL 4.3 pipeline.</p>
+
+<h3>
+<a id="structure" class="anchor" href="#structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Structure:</h3>
+
+<p>The Graphics Framework is modular: it presents core functionality (mesh readers, camera definitions, height map generation, etc.) along with a set of projects to test each of these features incrementally. An overview follows:</p>
+
+<pre><code>GraphicsFramework/
+├── Core/
+│   ├── Mesh.cpp
+│   ├── OGLRenderer.cpp
+│   ├── Shaders.cpp
+|   ├── Camera.cpp
+|   ├── Light.cpp
+|   ├── Frustum.cpp
+|   ├── Foliage.cpp
+|   ├── GenericInput.cpp
+|   ├── MD5Animation.cpp
+|   ├── MD5FileData.cpp
+|   ├── MD5Mesh.cpp
+|   ├── MD5Node.cpp
+|   ├── Matrix4.cpp
+|   ├── OBJMesh.cpp
+|   ├── Plane.cpp
+|   ├── Quaternion.cpp
+|   ├── SceneNode.cpp
+|   ├── Vector2.h
+|   ├── Vector3.h
+|   ├── Vector4.h
+|   ├── Window.cpp
+│   └── HeightMap.cpp
+├── Tests/
+│   ├── HelloWorldTriangle
+|   ├── Matrix Transformations
+|   ├── Texturing
+|   ├── Depth &amp; Transparency
+|   ├── Stencils &amp; Scissors
+|   ├── Scene Management Graph
+|   ├── Index Buffers
+|   ├── Skeletal Animation
+|   ├── Post Processing
+|   ├── Per pixel lighting
+|   ├── Shadow Mapping
+|   ├── Deffered rendering
+|   ├── Conversion 2D to 3D
+|   ├── Text
+|   ├── Geometry Shaders
+|   ├── Texture Atlas
+│   └── Signal To Terrain
+└── Shader Types/
+    ├── Cartoon
+    ├── Transparent
+    ├── Reflective
+    └── Particle
+</code></pre>
+
+<h2>
+<a id="physics-engine" class="anchor" href="#physics-engine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Physics Engine</h2>
+
+<p>The framework describes physics and real-time algorithms mathematically. The real-time collision detection simulates solid body interaction.</p>
+
+<pre><code>PhysicsFramework/
+├── Core/
+│   ├── RigidBodies
+│   ├── SoftBodies
+│   ├── Particles
+|   ├── NumericalIntegration
+|   ├── AngularMotion
+|   ├── CollisionDetection
+|   ├── CollisionResponse
+|   ├── Broadphase
+|   ├── Narrowphase
+|   ├── Impulse
+|   ├── Penalty
+|   ├── Torque
+|   ├── Spring
+|   ├── SUVAC
+│   └── FluidDynamics
+├── Tests/
+│   ├── SimpleCollision
+|   ├── CollisionDetectResponse
+|   ├── Damping
+│   └── PenaltyTest
+└── CUDAIntegration/
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
