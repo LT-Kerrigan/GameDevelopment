@@ -12,6 +12,7 @@ The current project consists of a graphics framework developed in C++, OpenGL 4.
 - [Documentation] (#documentation)
 - [About the creator] (#about-creator)
 - [Copyright and license] (#copyright)
+- [Acknowledgements] (#acknowledgements)
 
 ## Graphics engine
  Built from the ground up without relying on GLU/GLUT, and features only OpenGL 4.3 pipeline.
@@ -96,8 +97,7 @@ PhysicsFramework/
 │   └── PenaltyTest
 └── CUDAIntegration/
 ```
- 
- ##Many thanks to: 
+ ## Acknowledgements
  [Rich Davison](https://twitter.com/yOUKAYJAY) (See OGLRenderer);
  [Martin Scott](http://martinscottgameeng.tumblr.com/) (Physics);
  [Innigo Quilez](http://iquilezles.org/default.html) (see /Shaders);
