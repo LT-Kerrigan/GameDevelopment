@@ -1,7 +1,7 @@
 /*****************************************************************************************
 * 	         .--.              															 *
-* ::\`--._,'.::.`._.--'/::     @author Ana M. Mihut		@course  Graphics				 *
-* ::::.  ` __::__ '  .::::     @alias  LT-Kerrigan		@link    cs.ncl.ac.uk			 *
+* ::\`--._,'.::.`._.--'/::     @author Ana M. Mihut     @course  Graphics				 *
+* ::::.  ` __::__ '  .::::     @alias  LT-Kerrigan	@link    cs.ncl.ac.uk			 *
 * ::::::-:.`'..`'.:-::::::     @date   09.02.2014       @origin  Newcastle 				 *
 * ::::::::\ `--' /::::::::     @title  Camera CLASS   	@details Advanced Programming 	 *
 *																						 *
