@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../NCLGL/OGLRenderer.h"
-#include "../NCLGL/Camera.h"
+#include <OGLRenderer.h>
+#include <Camera.h>
 #include "textmesh.h"
 
 class Renderer : public OGLRenderer	{

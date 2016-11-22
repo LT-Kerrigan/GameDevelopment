@@ -19,6 +19,8 @@ _-_-_-_-_-_-_-""  ""
 #include <Mesh.h>
 #include <vector>
 
+using namespace std;
+
 /*
 A TextMesh uses a 'Font', simply a struct which holds a texture, and some info
 about that texture. bitmap fonts have a grid like array of cells, usually

@@ -31,7 +31,7 @@ what it collides with!), or maybe to perform height checking...
 Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	camera		= new Camera(0,0,Vector3(0,0,100));
 	//cube		= new OBJMesh(MESHDIR"centeredcube.obj");	//A cube surrounding the origin!
-	cube = Mesh::GenerateCubeMesh(Vector3(2, 2, 2));
+	cube = Mesh::GenerateSphereMesh(2, 5, 5);
 	triangle    = Mesh::GenerateTriangle();	//And a triangle to use as the mouse pointer...
 
 	cube->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"stone_wall.jpg",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
@@ -101,7 +101,7 @@ void Renderer::RenderScene()	{
 	//We also set their colours to white - in the following code we set boxes under our mouse
 	//to blue, so they'll be drawn blue in the 'next' frame, and then reset by this code.
 	for(vector<SceneNode*>::const_iterator i = root->GetChildIteratorStart(); i != root->GetChildIteratorEnd(); ++i) {
-		(*i)->SetColour(Vector4(1,1,1,1));
+		(*i)->SetColour(Vector4(1,0,0,1));
 	}
 	//If the left mouse button is held down, we're going to do some picking!
 	if(Window::GetMouse()->ButtonHeld(MOUSE_LEFT))	{

@@ -45,19 +45,12 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	init = true;
 }
 
-
-/*
-Clean up your mess!
-*/
 Renderer::~Renderer(void)	{
 	delete triangle;
 	delete quad;
 	delete camera;
 }
 
-/*
-Update the camera, perhaps?
-*/
 void Renderer::UpdateScene(float msec)	{
 	camera->UpdateCamera(msec);
 }

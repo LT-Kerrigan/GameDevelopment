@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../NCLGL/OGLRenderer.h"
-#include "../../NCLGL/Mesh.h"
-#include "../../NCLGL/camera.h"
+#include <OGLRenderer.h>
+#include <Mesh.h>
+#include <camera.h>
 
 class Renderer : public OGLRenderer	{
 public:
@@ -18,8 +18,8 @@ public:
 	Vector3	WorldPosToScreenPos(Vector3 screenPos);
 
 protected:
-	Mesh*	triangle;	//A triangle!
-	Mesh*	quad;		//A quad?
-	Camera* camera;		//I think this is a camera...
+	Mesh*	triangle;	
+	Mesh*	quad;		
+	Camera* camera;		
 };
 

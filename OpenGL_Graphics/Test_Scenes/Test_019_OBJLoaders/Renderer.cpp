@@ -2,7 +2,7 @@
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	camera = new Camera(-30.0f, 180.0f, Vector3(0.0f, 0.0f, 0.0f));
-	m_Mesh = Mesh::GenerateCubeMesh(Vector3(0, 0, 0), 1.5f);
+	m_Mesh = Mesh::GenerateSphereMesh(2, 5, 5);
 
 	GLuint tex = SOIL_load_OGL_texture(TEXTUREDIR"brick.tga", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, 0);
 	m_Mesh->SetTexture(tex);
