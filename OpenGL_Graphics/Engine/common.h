@@ -34,5 +34,5 @@ static inline double DegToRad(const double rad)	{
 
 #define SHADERDIR	"../../Shaders/"
 #define MESHDIR		"../../Meshes/"
-#define TEXTUREDIR  "../../Textures/"
+#define TEXTUREDIR  "../../Resources/Textures/"
 #define SOUNDSDIR	"../../Sounds/"
