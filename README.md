@@ -102,6 +102,3 @@ PhysicsFramework/
 
 - [Rich Davison](https://twitter.com/yOUKAYJAY) (See OGLRenderer);
 - [Martin Scott](http://martinscottgameeng.tumblr.com/) (Physics);
-- [Innigo Quilez](http://iquilezles.org/default.html) (see /Shaders);
-
-
