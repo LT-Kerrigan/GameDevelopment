@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="MD5Anim.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5FileData.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5Mesh.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5Node.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Input_Output</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJMesh.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Input_Output</Filter>
+    </ClCompile>
+    <ClCompile Include="HeightMap.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Context</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLRenderer.cpp">
+      <Filter>Context</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneNode.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeRobot.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Frustum.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InputDevice.h">
+      <Filter>Input_Output</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Anim.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5FileData.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Mesh.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Node.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Input_Output</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJMesh.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Input_Output</Filter>
+    </ClInclude>
+    <ClInclude Include="HeightMap.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildMeshInterface.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Context</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLRenderer.h">
+      <Filter>Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneNode.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeRobot.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Frustum.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Input_Output">
+      <UniqueIdentifier>{6105fb36-21d6-4e0d-9427-b4eae32d76f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh_Data">
+      <UniqueIdentifier>{e0109726-16f9-479d-a83e-8634b9e75cdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{0f1a9a9b-0a44-4d74-b0c9-1999f0357291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Context">
+      <UniqueIdentifier>{d3fa9421-8ec6-4c44-a5a0-3621c6a617a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{8590aa4c-ec19-4129-b7f8-782a79ad3301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{f02f037b-c036-4282-bd26-e9205e924e84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{a6d0c6fe-5f24-4f7f-ac8b-eef3f6507865}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
