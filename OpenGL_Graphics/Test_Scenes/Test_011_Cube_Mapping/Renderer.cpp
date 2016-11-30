@@ -2,13 +2,11 @@
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	camera = new Camera();
-	heightMap = new HeightMap("../ Textures / terrain .raw ");
+
+	heightMap = new HeightMap(TEXTUREDIR"terrain.raw ");
 	quad = Mesh::GenerateQuad();
 
-	camera->SetPosition(Vector3(RAW_WIDTH * HEIGHTMAP_X / 2.0f,
-		500.0f, RAW_WIDTH * HEIGHTMAP_X));
-
-	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f, (RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)), Vector4(0.9f, 0.9f, 1.0f, 1), (RAW_WIDTH * HEIGHTMAP_X) / 2.0f);
+	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f, (RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)), Vector4(0.9f, 0.9f, 1.0f, 1), 1500.0f );
 
 	reflectShader = new Shader(SHADERDIR"Test_11_PerPixelVertex.glsl", SHADERDIR"Test_13_ReflectFragment.glsl");
 	skyboxShader  = new Shader(SHADERDIR"Test_13_SkyboxVertex.glsl",   SHADERDIR"Test_13_SkyboxFragment.glsl");
@@ -18,17 +16,17 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 		return;
 	}
 
-	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"water.TGA ", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+	quad->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"water0.jpg ", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 	
-	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"Barren Reds .JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
-	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR"Barren RedsDOT3.tga ", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"brick.tga", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR"brickDOT3.tga", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
-	cubeMap = SOIL_load_OGL_cubemap(TEXTUREDIR"rusted_west.bmp ", TEXTUREDIR"rusted_east.bmp", 
-									TEXTUREDIR"rusted_up.bmp",	  TEXTUREDIR"rusted_down.bmp", 
-									TEXTUREDIR"rusted_south.bmp", TEXTUREDIR"rusted_north.bmp", 
+	cubeMap = SOIL_load_OGL_cubemap(TEXTUREDIR"rusted_west.jpg ", TEXTUREDIR"rusted_east.jpg", 
+									TEXTUREDIR"rusted_up.jpg",	  TEXTUREDIR"rusted_down.jpg", 
+									TEXTUREDIR"rusted_south.jpg", TEXTUREDIR"rusted_north.jpg", 
 									SOIL_LOAD_RGB, SOIL_CREATE_NEW_ID, 0);
 	
-	if (!cubeMap || !quad->GetTexture() || !heightMap->GetTexture() || !heightMap->GetBumpMap()) {
+	if ( !quad->GetTexture() || !heightMap->GetTexture() || !heightMap->GetBumpMap()) {
 			return;
 	}
 	
@@ -92,8 +90,8 @@ void Renderer::DrawHeightMap() {
 	SetShaderLight(*light);
 
 	glUniform3fv(glGetUniformLocation(currentShader->GetProgram(), "cameraPos"), 1, (float *)& camera->GetPosition());
-	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "diffuseTex "), 0);
-	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "bumpTex "), 1);
+	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "diffuseTex"), 0);
+	glUniform1i(glGetUniformLocation(currentShader->GetProgram(), "bumpTex"), 1);
 
 	modelMatrix.ToIdentity();
 	textureMatrix.ToIdentity();
