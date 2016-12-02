@@ -3,6 +3,7 @@
 #include <OGLRenderer.h>
 #include <Camera.h>
 #include <HeightMap.h>
+#include <Light.h>
 
 class Renderer : public OGLRenderer {
 public:

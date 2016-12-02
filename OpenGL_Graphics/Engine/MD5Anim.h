@@ -4,19 +4,21 @@ Implements:
 Author:Rich Davison	<richard.davison4@newcastle.ac.uk>
 Description: Implementation of id Software's MD5 skeletal animation format.
 
-MD5Anims are slightly less complicated than MD5Meshes. They consist of a
+MD5Anims are slightly less complicated than MD5Meshes. They consist of a 
 'base frame', which is like a bind pose for an animation, and a number of
 animation frames, each of which has a number of values in it, equating to the
 differences between this frame of animation and the base frame. Depending on
 the software used to export the MD5Anim, the baseframe might be 'empty',
 meaning each frame consist of every transform for every joint.
 
--_-_-_-_-_-_-_,------,
+-_-_-_-_-_-_-_,------,   
 _-_-_-_-_-_-_-|   /\_/\   NYANYANYAN
 -_-_-_-_-_-_-~|__( ^ .^) /
-_-_-_-_-_-_-_-""  ""
+_-_-_-_-_-_-_-""  ""   
 
 *//////////////////////////////////////////////////////////////////////////////
+#include "common.h"
+
 #pragma once
 
 #include <fstream>
@@ -94,7 +96,7 @@ struct MD5BaseFrame {
 
 	MD5BaseFrame::MD5BaseFrame() {
 		orientations = NULL;
-		positions = NULL;
+		positions    = NULL;
 	}
 
 	//Delete our heap memory
@@ -129,7 +131,7 @@ struct MD5Skeleton;
 /*
 Now for the class definition. Every MD5Anim has a number of joints
 (which should equal the number of joints of the MD5Mesh it is to be applied to)
-a number of frames of animation, an axis-aligned bounding box for every frame,
+a number of frames of animation, an axis-aligned bounding box for every frame, 
 and a baseFrame.
 */
 class MD5Anim	{
@@ -140,12 +142,12 @@ public:
 
 	//Transforms the passed in skeleton to the correct positions and
 	//orientations for the desired frame
-	void	TransformSkeleton(MD5Skeleton &skel, unsigned int frame);
+	void	TransformSkeleton(MD5Skeleton &skel,  unsigned int frame);
 
 	//Returns the framerate
-	unsigned int	GetFrameRate() { return frameRate; }
+	unsigned int	GetFrameRate() {return frameRate;}
 	//Returns the number of frames of animation
-	unsigned int	GetNumFrames() { return numFrames; }
+	unsigned int	GetNumFrames() {return numFrames;}
 
 protected:
 	//Helper function used by the constructor to load in an MD5Anim from the 
@@ -156,7 +158,7 @@ protected:
 	void	LoadMD5AnimHierarchy(std::ifstream &from, unsigned int &count);
 
 	//Helper function for LoadMD5Anim to load in the bounding boxes
-	void	LoadMD5AnimBounds(std::ifstream &from, unsigned int &count);
+	void	LoadMD5AnimBounds(std::ifstream &from,unsigned int &count );
 
 	//Helper function for LoadMD5Anim to load in the base frame
 	void	LoadMD5AnimBaseFrame(std::ifstream &from);
@@ -174,3 +176,4 @@ protected:
 	MD5Frame*		frames;			//Array of individual frames for this animation
 	MD5BaseFrame	baseFrame;		//BaseFrame for this animation
 };
+

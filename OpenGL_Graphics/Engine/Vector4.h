@@ -4,13 +4,15 @@ Implements:
 Author:Rich Davison
 Description:VERY simple Vector4 class. Students are encouraged to modify this as necessary!
 
--_-_-_-_-_-_-_,------,
+-_-_-_-_-_-_-_,------,   
 _-_-_-_-_-_-_-|   /\_/\   NYANYANYAN
 -_-_-_-_-_-_-~|__( ^ .^) /
-_-_-_-_-_-_-_-""  ""
+_-_-_-_-_-_-_-""  ""   
 
 */
 #pragma once
+
+#include "Vector3.h"
 
 class Vector4	{
 public:
@@ -22,6 +24,10 @@ public:
 		this->y = y;
 		this->z = z;
 		this->w = w;
+	}
+
+	Vector3 ToVector3() {
+		return Vector3(x, y, z);
 	}
 
 	~Vector4(void){}

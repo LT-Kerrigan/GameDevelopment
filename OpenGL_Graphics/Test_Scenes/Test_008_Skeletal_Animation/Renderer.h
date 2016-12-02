@@ -1,9 +1,9 @@
 #pragma once
 
-#include <OGLRenderer.h>
-#include <Camera.h>
-#include <MD5Mesh.h>
-#include <MD5Node.h>
+#include "OGLRenderer.h"
+#include "Camera.h"
+#include "MD5Mesh.h"
+#include "MD5Node.h"
 
 class Renderer : public OGLRenderer		{
 public:

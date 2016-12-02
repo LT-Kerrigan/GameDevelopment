@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="MD5Anim.cpp">
-      <Filter>Mesh_Data</Filter>
-    </ClCompile>
-    <ClCompile Include="MD5FileData.cpp">
-      <Filter>Mesh_Data</Filter>
-    </ClCompile>
-    <ClCompile Include="MD5Mesh.cpp">
-      <Filter>Mesh_Data</Filter>
-    </ClCompile>
-    <ClCompile Include="MD5Node.cpp">
-      <Filter>Mesh_Data</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Mesh_Data</Filter>
     </ClCompile>
@@ -61,22 +49,22 @@
     <ClCompile Include="Frustum.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="MD5Anim.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5FileData.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5Mesh.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
+    <ClCompile Include="MD5Node.cpp">
+      <Filter>Mesh_Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputDevice.h">
       <Filter>Input_Output</Filter>
-    </ClInclude>
-    <ClInclude Include="MD5Anim.h">
-      <Filter>Mesh_Data</Filter>
-    </ClInclude>
-    <ClInclude Include="MD5FileData.h">
-      <Filter>Mesh_Data</Filter>
-    </ClInclude>
-    <ClInclude Include="MD5Mesh.h">
-      <Filter>Mesh_Data</Filter>
-    </ClInclude>
-    <ClInclude Include="MD5Node.h">
-      <Filter>Mesh_Data</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Mesh_Data</Filter>
@@ -143,6 +131,18 @@
     </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Anim.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5FileData.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Mesh.h">
+      <Filter>Mesh_Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5Node.h">
+      <Filter>Mesh_Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,10 +5,10 @@ Implements:
 Author:Rich Davison
 Description:VERY simple Vector2 class. Students are encouraged to modify this as necessary!
 
--_-_-_-_-_-_-_,------,
+-_-_-_-_-_-_-_,------,   
 _-_-_-_-_-_-_-|   /\_/\   NYANYANYAN
 -_-_-_-_-_-_-~|__( ^ .^) /
-_-_-_-_-_-_-_-""  ""
+_-_-_-_-_-_-_-""  ""   
 
 */
 #include <iostream>
@@ -40,11 +40,11 @@ public:
 	}
 
 	inline Vector2  operator-(const Vector2  &a) const{
-		return Vector2(x - a.x, y - a.y);
+		return Vector2(x - a.x,y - a.y);
 	}
 
 	inline Vector2  operator+(const Vector2  &a) const{
-		return Vector2(x + a.x, y + a.y);
+		return Vector2(x + a.x,y + a.y);
 	}
 };
 

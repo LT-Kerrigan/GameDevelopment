@@ -4,7 +4,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	camera			= new Camera(0,-90.0f,Vector3(-180,60,0));
 
 #ifdef MD5_USE_HARDWARE_SKINNING
-	currentShader   = new Shader(SHADERDIR"Test_03_TexturedVertex.glsl", SHADERDIR"Test_03_TexturedFragment.glsl");
+	currentShader   = new Shader("Test_03_TexturedVertex.glsl", SHADERDIR"Test_03_TexturedFragment.glsl");
 #else
 	currentShader   = new Shader(SHADERDIR"Test_03_TexturedVertex.glsl", SHADERDIR"Test_03_TexturedFragment.glsl");
 #endif
