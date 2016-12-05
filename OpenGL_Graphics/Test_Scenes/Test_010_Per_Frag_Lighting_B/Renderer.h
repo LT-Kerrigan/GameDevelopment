@@ -3,6 +3,7 @@
 #include <OGLRenderer.h>
 #include <Camera.h>
 #include <HeightMap.h>
+#include <Light.h>
 
 class Renderer : public OGLRenderer {
 public:
@@ -13,22 +14,10 @@ public:
 	virtual void UpdateScene(float msec);
 
 protected:
-	void DrawHeightmap();
-	void DrawWater();
-	void DrawGrass(float xoff, float zoff);
-	void DrawSkybox();
-
-	Shader* lightShader;
-	Shader* reflectShader;
-	Shader*	grassShader;
-	Shader* skyboxShader;
+	void DrawHeightMap();
 
 	HeightMap* heightMap;
-	Mesh*      quad;
-	Mesh*      quadGrass;
-	Light*     light;
-	Camera*    camera;
-
-	GLuint     cubeMap;
-	float      waterRotate;
+	Camera*   camera;
+	Light*    light;
+	Shader*   heightMapShader;
 };
