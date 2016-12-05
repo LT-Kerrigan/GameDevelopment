@@ -17,13 +17,6 @@
 class HeightMap : public Mesh {
 public:
 	HeightMap(std::string name);
+
 	~HeightMap(void){};
-
-	//void BindToTex(unsigned char* data);
-
-	//float GetHeightAt(const Vector3 &position);
-
-	//GLuint vertexBuffer;
-	//GLuint vertexTexture;
-	//GLuint heightmapY;
 };

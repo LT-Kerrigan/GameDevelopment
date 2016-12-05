@@ -6,7 +6,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent){
 
 	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
 
-	currentShader = new Shader(SHADERDIR"Test_15_BumpVertex.glsl", SHADERDIR"Test_15_BumpFragment.glsl");
+	currentShader = new Shader(SHADERDIR"Test_11_A_PerPixelVertex.glsl", SHADERDIR"Test_11_A_PerPixelFragment.glsl");
 	
 	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"BarrenReds.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR"BarrenRedsDOT3.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));

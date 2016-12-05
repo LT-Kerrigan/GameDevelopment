@@ -40,8 +40,6 @@ HeightMap::HeightMap(std::string name){
 		}
 	}
 
-	//BindToTex(data);
-
 	delete data;
 
 	m_NumIndices = 0;
