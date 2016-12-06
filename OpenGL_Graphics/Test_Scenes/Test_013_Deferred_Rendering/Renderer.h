@@ -1,45 +1,45 @@
-#pragma once
+#pragma  once
 
 #include <OGLRenderer.h>
 #include <Camera.h>
-#include <OBJMesh.h>
-#include <HeightMap.h>
+#include <OBJmesh.h>
+#include <heightmap.h>
 
-#define LIGHTNUM 8 
+#define  LIGHTNUM 8    //We'll  generate  LIGHTNUM  squared  lights ...
 
-class Renderer : public OGLRenderer {
+class  Renderer : public  OGLRenderer {
 public:
 	Renderer(Window &parent);
 	virtual ~Renderer(void);
 
-	virtual void RenderScene();
-	virtual void UpdateScene(float msec);
+	virtual  void  RenderScene();
+	virtual  void  UpdateScene(float  msec);
 
 protected:
-	void FillBuffers();
-	void DrawPointLights();
-	void CombineBuffers();
-	void GenerateScreenTexture(GLuint &into, bool depth = false);
+	void   FillBuffers();            //G-Buffer  Fill  Render  Pass
+	void   DrawPointLights();       // Lighting  Render  Pass
+	void   CombineBuffers();         // Combination  Render  Pass
+//Make a new  texture ...
+	void   GenerateScreenTexture(GLuint &into, bool  depth = false);
+	Shader*   sceneShader;           // Shader  to fill  our  GBuffers
+	Shader*   pointlightShader;     // Shader  to  calculate  lighting
+	Shader*   combineShader;         // shader  to  stick it all  together
 
-	Shader* sceneShader;
-	Shader* pointlightShader;
-	Shader* combineShader;
+	Light*    pointLights;           // Array of  lighting  data
+	Mesh*     heightMap;             // Terrain!
+	OBJMesh* sphere;                 // Light  volume
+	Mesh*     quad;                   //To draw a full -screen  quad
+	Camera*   camera;                 //Our  usual  camera
 
-	Light*   pointLights;
-	Mesh*    heightMap;
-	OBJMesh* sphere;
-	Mesh*    quad;
-	Camera*  camera;
+	float     rotation;               //How  much to  increase  rotation  by
 
-	float rotation;
+	GLuint    bufferFBO;             //FBO  for  our G-Buffer  pass
+	GLuint    bufferColourTex;      // Albedo  goes  here
+	GLuint    bufferNormalTex;      // Normals  go here
+	GLuint    bufferDepthTex;       // Depth  goes  here
 
-	GLuint bufferFBO;
-	GLuint bufferColourTex;
-	GLuint bufferNormalTex;
-	GLuint bufferDepthTex;
+	GLuint    pointLightFBO;         //FBO  for  our  lighting  pass
+	GLuint    lightEmissiveTex;     // Store  emissive  lighting
+	GLuint    lightSpecularTex;     // Store  specular  lighting
 
-	GLuint pointLightFBO;
-	GLuint lightEmissiveTex;
-	GLuint lightSpecularTex;
 };
-
