@@ -7,7 +7,7 @@
 #define SHADER_GEOMETRY 2
 
 using namespace std;
-class Shader	{
+class Shader {
 public:
 	Shader(string vertex, string fragment, string geometry = "");
 	~Shader(void);
@@ -25,4 +25,3 @@ protected:
 
 	bool loadFailed;
 };
-

@@ -66,6 +66,8 @@ Mesh* Mesh::GenerateQuad() {
 	mesh->m_Vertices      = new Vector3[mesh->m_NumVertices];
 	mesh->m_TextureCoords = new Vector2[mesh->m_NumVertices];
 	mesh->m_Colours       = new Vector4[mesh->m_NumVertices];
+	mesh->m_Tangents	  = new Vector3[mesh->m_NumVertices];
+	mesh->m_Normals		  = new Vector3[mesh->m_NumVertices];
 
 	mesh->m_Vertices[0] = Vector3(-1.0f, -1.0f, 0.0f);
 	mesh->m_Vertices[1] = Vector3(-1.0f, 1.0f, 0.0f);
@@ -78,11 +80,13 @@ Mesh* Mesh::GenerateQuad() {
 	mesh->m_TextureCoords[3] = Vector2(1.0f, 0.0f);
 
 	for (int i = 0; i < 4; ++i) {
-		/*mesh->m_Colours[i]  = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-		mesh->m_Normals[i]  = Vector3(0.0f, 0.0f, -1.0f);
-		mesh->m_Tangents[i] = Vector3(1.0f, 0.0f, 0.0f);*/
+		mesh->m_Colours[i]  = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		//mesh->m_Normals[i]  = Vector3(0.0f, 0.0f, -1.0f);
+		//mesh->m_Tangents[i] = Vector3(1.0f, 0.0f, 0.0f);
 	}
 
+	mesh->GenerateNormals();
+	mesh->GenerateTangents();
 	mesh->BufferData();
 	return mesh;
 }

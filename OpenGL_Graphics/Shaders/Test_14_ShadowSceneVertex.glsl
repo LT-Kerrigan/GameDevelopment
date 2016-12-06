@@ -23,7 +23,7 @@ out Vertex {
 
 void main(void){
 	mat3 normalMatrix = transpose(inverse(mat3(modelMatrix)));
-
+	
 	OUT.colour     = colour;
 	OUT.texCoord   = texCoord;
 	OUT.normal     = normalize(normalMatrix * normalize(normal));

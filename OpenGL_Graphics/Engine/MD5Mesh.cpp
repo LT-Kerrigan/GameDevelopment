@@ -159,16 +159,16 @@ void MD5Mesh::RebufferData()	{
 	}
 
 #ifdef MD5_USE_NORMALS
-	if(normals) {
-		glBindBuffer(GL_ARRAY_BUFFER, bufferObject[NORMAL_BUFFER]);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, numVertices*sizeof(Vector3), (void*)normals);
+	if(m_Normals) {
+		glBindBuffer(GL_ARRAY_BUFFER, m_BufferObject[NORMAL_BUFFER]);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, m_NumVertices*sizeof(Vector3), (void*)m_Normals);
 	}
 #endif
 
 #ifdef MD5_USE_TANGENTS_BUMPMAPS
-	if(tangents) {
-		glBindBuffer(GL_ARRAY_BUFFER, bufferObject[TANGENT_BUFFER]);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, numVertices*sizeof(Vector3), (void*)tangents);
+	if(m_Tangents) {
+		glBindBuffer(GL_ARRAY_BUFFER, m_BufferObject[TANGENT_BUFFER]);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, m_NumVertices*sizeof(Vector3), (void*)m_Tangents);
 	}
 #endif
 

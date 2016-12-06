@@ -251,7 +251,7 @@ void	MD5FileData::LoadShaderProxy(std::string filename, MD5SubMesh &m) {
 	filename = filename.substr(1,filename.size()-2);
 	int at = filename.find_last_of('/');
 
-	std::ifstream f("../../Meshes/" + filename.substr(at+1) + ".proxy",std::ios::in);
+	std::ifstream f("../../Resources/Meshes/" + filename.substr(at+1) + ".proxy",std::ios::in);
 
 	if(!f) {	//Oh dear.
 		return;
@@ -501,13 +501,13 @@ void MD5FileData::CreateMeshes()	{
 
 #ifdef MD5_USE_NORMALS
 		//Create space for normals!
-		target->normals		  = new Vector3[subMesh.numverts];
+		target->m_Normals		  = new Vector3[subMesh.numverts];
 #endif 
 
 #ifdef MD5_USE_TANGENTS_BUMPMAPS
 		//Create space for tangents, and assign the bump texture
-//		target->bumpTexture	  = subMesh.bumpIndex;	
-//		target->tangents	  = new Vector3[subMesh.numverts];
+		target->bumpTexture	  = subMesh.bumpIndex;	
+		target->m_Tangents	  = new Vector3[subMesh.numverts];
 #endif
 
 		target->m_NumIndices    = subMesh.numtris*3; //Each tri has 3 points....
