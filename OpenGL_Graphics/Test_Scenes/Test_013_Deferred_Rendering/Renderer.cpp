@@ -2,8 +2,7 @@
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	rotation = 0.0f;
-	camera = new  Camera(0.0f, 0.0f,
-		Vector3(RAW_WIDTH*HEIGHTMAP_X / 2.0f, 500, RAW_WIDTH*HEIGHTMAP_X));
+	camera = new  Camera(0.0f, 0.0f, Vector3(RAW_WIDTH*HEIGHTMAP_X / 2.0f, 500, RAW_WIDTH*HEIGHTMAP_X));
 
 	quad = Mesh::GenerateQuad();
 
@@ -27,16 +26,15 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 		}
 	}
 
-	heightMap = new  HeightMap(TEXTUREDIR"terrain.raw");
+	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
 	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"BarrenReds.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
-
 	heightMap->SetBumpMap(SOIL_load_OGL_texture(TEXTUREDIR"BarrenRedsDOT3.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
 
 	SetTextureRepeating(heightMap->GetTexture(), true);
 	SetTextureRepeating(heightMap->GetBumpMap(), true);
 
 	sphere = new  OBJMesh();
-	if (!sphere->LoadOBJMesh(MESHDIR"sphere.obj")) {
+	if (!sphere->LoadOBJMesh(MESHDIR"ico.obj")) {
 		return;
 	}
 

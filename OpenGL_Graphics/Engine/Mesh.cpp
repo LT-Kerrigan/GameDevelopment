@@ -81,12 +81,12 @@ Mesh* Mesh::GenerateQuad() {
 
 	for (int i = 0; i < 4; ++i) {
 		mesh->m_Colours[i]  = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-		//mesh->m_Normals[i]  = Vector3(0.0f, 0.0f, -1.0f);
-		//mesh->m_Tangents[i] = Vector3(1.0f, 0.0f, 0.0f);
+		mesh->m_Normals[i]  = Vector3(0.0f, 0.0f, -1.0f);
+		mesh->m_Tangents[i] = Vector3(1.0f, 0.0f, 0.0f);
 	}
 
-	mesh->GenerateNormals();
-	mesh->GenerateTangents();
+	//mesh->GenerateNormals();
+	//mesh->GenerateTangents();
 	mesh->BufferData();
 	return mesh;
 }
@@ -210,7 +210,9 @@ void Mesh::GenerateTangents(){
 	for (GLuint i = 0; i < m_NumVertices; ++i){
 		m_Tangents[i] = Vector3();
 	}
-
+	if (!m_TextureCoords) {
+		return;
+	}
 	if (m_Indices) {
 		for (GLuint i = 0; i < m_NumIndices; i += 3){
 			unsigned int a = m_Indices[i];

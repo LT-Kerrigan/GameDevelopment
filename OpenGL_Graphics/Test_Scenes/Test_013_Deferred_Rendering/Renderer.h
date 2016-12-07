@@ -1,9 +1,9 @@
 #pragma  once
 
-#include <OGLRenderer.h>
-#include <Camera.h>
-#include <OBJmesh.h>
-#include <heightmap.h>
+#include "../../Engine/OGLRenderer.h"
+#include "../../Engine/Camera.h"
+#include "../../Engine/OBJMesh.h"
+#include "../../Engine/HeightMap.h"
 
 #define  LIGHTNUM 8    //We'll  generate  LIGHTNUM  squared  lights ...
 
@@ -26,7 +26,7 @@ protected:
 	Shader*   combineShader;         // shader  to  stick it all  together
 
 	Light*    pointLights;           // Array of  lighting  data
-	Mesh*     heightMap;             // Terrain!
+	HeightMap*     heightMap;             // Terrain!
 	OBJMesh* sphere;                 // Light  volume
 	Mesh*     quad;                   //To draw a full -screen  quad
 	Camera*   camera;                 //Our  usual  camera
