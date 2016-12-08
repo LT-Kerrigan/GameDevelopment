@@ -34,6 +34,10 @@ public:
 	float GetCameraDistance() const { return m_DistanceFromCamera; }
 	void SetCameraDistance(float f) { m_DistanceFromCamera; }
 
+	//added for 2D to 3D projection
+	void SetTransform(Matrix4 transform) { m_LocalTransform = transform; }
+	Matrix4 GetTransform() { return m_LocalTransform; }
+
 	static bool CompareByCameraDistance(SceneNode*a, SceneNode*b) {
 	return (a->m_DistanceFromCamera < b->m_DistanceFromCamera) ? true : false;
 	}

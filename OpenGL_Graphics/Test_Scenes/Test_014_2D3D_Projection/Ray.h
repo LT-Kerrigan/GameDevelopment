@@ -22,10 +22,10 @@ _-_-_-_-_-_-_-""  ""
 *//////////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#include "../../NCLGL/Vector3.h"
-#include "../../NCLGL/SceneNode.h"
-
+#include <Vector3.h>
+#include <SceneNode.h>
 #include <vector>
+
 using namespace std;
 
 /*

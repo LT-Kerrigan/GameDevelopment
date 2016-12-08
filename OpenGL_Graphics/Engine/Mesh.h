@@ -18,6 +18,22 @@ public:
 	void SetBumpMap(GLuint tex)   { bumpTexture = tex; }
 	GLuint GetBumpMap()			  { return bumpTexture; }
 
+	static Mesh*	LoadMeshFile(const string &filename);
+
+	static Mesh*	GeneratePointArray(float width, float height);
+
+	static Mesh*	GenerateSphereMesh(float radius, unsigned int rings, unsigned int sectors);
+
+	static Mesh*	GenerateCubeMesh(Vector3 dim);
+
+	static Mesh*	GenerateCubeMesh(Vector3 centre, float len);
+
+	static Mesh* GenAABB(std::vector<Vector3> triangle);
+
+	static Mesh* GenAABB(Vector3* vertices, int numverts);
+
+	static Mesh* GenerateTiltedTriangle(float scale);
+
 protected:
 	void BufferData();
 

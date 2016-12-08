@@ -16,5 +16,4 @@ void main() {
   if(useTexture > 0) {
     gl_FragColor *= texture(diffuseTex, IN.texCoord);
   }
-
 }

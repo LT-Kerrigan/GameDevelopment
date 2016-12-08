@@ -30,17 +30,18 @@ what it collides with!), or maybe to perform height checking...
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	camera		= new Camera(0,0,Vector3(0,0,100));
-	cube		= new OBJMesh(MESHDIR"centeredCube.obj");	//A cube surrounding the origin!
+	cube		= new OBJMesh(MESHDIR"centeredcube.obj");	//A cube surrounding the origin!
 	triangle    = Mesh::GenerateTriangle();	//And a triangle to use as the mouse pointer...
 
-	cube->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"brick.tga",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+	cube->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"BarrenReds.jpg",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+	
 
 	if(!cube->GetTexture()) {
 		return;
 	}
 	//We don't need to do anything fancy with shaders this time around, so we're
 	//going to borrow the scene shader from tutorial 6
-	currentShader = new Shader(SHADERDIR"SceneVertex.glsl", SHADERDIR"SceneFragment.glsl");
+	currentShader = new Shader(SHADERDIR"Test_16_SceneVertex.glsl", SHADERDIR"Test_16_SceneFragment.glsl");
 
 	if(!currentShader->LinkProgram()) {
 		return;

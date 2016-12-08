@@ -82,6 +82,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 15 - Deferred Shad
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 16 -2D3D_Projection", "Test_014_2D3D_Projection\Extra - 2D to 3D Projection.vcxproj", "{B5DB73F9-F32B-4BE0-BA95-84FFC08E7B4C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {98D6B51B-CB0A-4389-ADC6-24082B967C3F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 17 - 3D2D_Projection", "Test_015_3D2D_Projection\Extra - 3D to 2D Projection.vcxproj", "{93B8637F-1A19-40B0-BD8B-7843D17B1F1E}"
 EndProject
@@ -92,6 +95,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 20 - Texture_Atlas", "Test_018_Texture_Atlas\Extra - Texture Atlas.vcxproj", "{5E152084-769D-459E-B59A-C8F05E165612}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 02 - View Matrix B", "Test_002_ViewMatrix_B\Test_02_ViewMatrix.vcxproj", "{75E54DCC-DCDA-4D9F-9836-7B0DD6E10472}"
+	ProjectSection(ProjectDependencies) = postProject
+		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {98D6B51B-CB0A-4389-ADC6-24082B967C3F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 21 - Test OBJLoader", "Test_019_OBJLoaders\Test_019_OBJLoaders.vcxproj", "{FD07BA81-EEDE-4627-A822-3985DE02E5D0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {98D6B51B-CB0A-4389-ADC6-24082B967C3F}
 	EndProjectSection
@@ -236,6 +244,13 @@ Global
 		{75E54DCC-DCDA-4D9F-9836-7B0DD6E10472}.Release|x64.ActiveCfg = Release|Win32
 		{75E54DCC-DCDA-4D9F-9836-7B0DD6E10472}.Release|x86.ActiveCfg = Release|Win32
 		{75E54DCC-DCDA-4D9F-9836-7B0DD6E10472}.Release|x86.Build.0 = Release|Win32
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0}.Debug|x64.ActiveCfg = Debug|Win32
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0}.Debug|x86.ActiveCfg = Debug|Win32
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0}.Debug|x86.Build.0 = Debug|Win32
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0}.Release|x64.ActiveCfg = Release|x64
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0}.Release|x64.Build.0 = Release|x64
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0}.Release|x86.ActiveCfg = Release|Win32
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -263,5 +278,6 @@ Global
 		{867248B2-6D91-45C4-B4CE-64AD14C4D373} = {358ABD99-E5ED-4406-BC65-842293D22F1A}
 		{5E152084-769D-459E-B59A-C8F05E165612} = {358ABD99-E5ED-4406-BC65-842293D22F1A}
 		{75E54DCC-DCDA-4D9F-9836-7B0DD6E10472} = {358ABD99-E5ED-4406-BC65-842293D22F1A}
+		{FD07BA81-EEDE-4627-A822-3985DE02E5D0} = {358ABD99-E5ED-4406-BC65-842293D22F1A}
 	EndGlobalSection
 EndGlobal

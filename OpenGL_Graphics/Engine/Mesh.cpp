@@ -34,6 +34,62 @@ Mesh::~Mesh() {
 	delete[] m_Tangents;
 }
 
+
+Mesh*	Mesh::LoadMeshFile(const string &filename) {
+	ifstream f(filename);
+
+	if (!f) {
+		return NULL;
+	}
+
+	Mesh*m = new Mesh();
+	f >> m->m_NumVertices;
+
+	int hasTex = 0;
+	int hasColour = 0;
+
+	f >> hasTex;
+	f >> hasColour;
+
+	m->m_Vertices = new Vector3[m->m_NumVertices];
+
+	if (hasTex) {
+		m->m_TextureCoords = new Vector2[m->m_NumVertices];
+		m->m_Colours = new Vector4[m->m_NumVertices];
+	}
+
+	for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
+		f >> m->m_Vertices[i].x;
+		f >> m->m_Vertices[i].y;
+		f >> m->m_Vertices[i].z;
+	}
+
+	if (hasColour) {
+		for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
+			unsigned int r, g, b, a;
+
+			f >> r;
+			f >> g;
+			f >> b;
+			f >> a;
+			//OpenGL can use floats for colours directly - this will take up 4x as
+			//much space, but could avoid any byte / float conversions happening
+			//behind the scenes in our shader executions
+			m->m_Colours[i] = Vector4(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+		}
+	}
+
+	if (hasTex) {
+		for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
+			f >> m->m_TextureCoords[i].x;
+			f >> m->m_TextureCoords[i].y;
+		}
+	}
+
+	m->BufferData();
+	return m;
+}
+
 Mesh* Mesh::GenerateTriangle() {
 	Mesh* mesh = new Mesh();
 
@@ -56,6 +112,323 @@ Mesh* Mesh::GenerateTriangle() {
 	mesh->BufferData();
 
 	return mesh;
+}
+
+Mesh*	Mesh::GeneratePointArray(float width, float height) {
+	Mesh*m = new Mesh();
+
+	m->m_Type = GL_POINTS;
+
+	m->m_NumVertices = width * height;
+
+	m->m_Vertices = new Vector3[m->m_NumVertices];
+	m->m_TextureCoords = new Vector2[m->m_NumVertices];
+	m->m_Colours = new Vector4[m->m_NumVertices];
+
+	for (int y = 0; y < height; ++y) {
+		for (int x = 0; x < width; ++x) {
+			int index = (y*width) + x;
+
+			m->m_Vertices[index] = Vector3(-1.0f + ((x / width) * 2.0f), -1.0f + ((y / height) * 2.0f), 0.0f);
+
+			m->m_TextureCoords[index] = Vector2(x / width, y / height);
+
+			m->m_Colours[index] = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		}
+	}
+
+	m->BufferData();
+
+	return m;
+}
+
+Mesh* Mesh::GenerateSphereMesh(float radius, unsigned int rings, unsigned int sectors) {
+	Mesh* sphereMesh = new Mesh();
+	sphereMesh->m_Type = GL_TRIANGLES;
+
+	// Generate a sphere
+	float const RingsRecip = 1.0 / (float)(rings - 1);
+	float const SectorsRecip = 1.0 / (float)(sectors - 1);
+	int countRings, countSectors;
+
+	sphereMesh->m_NumVertices = rings * sectors;
+	sphereMesh->m_NumIndices = (rings - 1) * (sectors - 1) * 6;
+
+	sphereMesh->m_Vertices = new Vector3[sphereMesh->m_NumVertices];
+	sphereMesh->m_TextureCoords = new Vector2[sphereMesh->m_NumVertices];
+	sphereMesh->m_Colours = new Vector4[sphereMesh->m_NumVertices];
+
+	sphereMesh->m_Indices = new unsigned int[sphereMesh->m_NumIndices];
+
+	int at = 0;
+
+	// Calculate vertices' position and their respective texture coordinates 
+	for (countRings = 0; countRings < rings; countRings++) {
+		float const y = sin(-PI / 2 + PI * countRings * RingsRecip) * radius;
+
+		for (countSectors = 0; countSectors < sectors; countSectors++) {
+			float const x = cos(2 * PI * countSectors * SectorsRecip) * sin(PI * countRings * RingsRecip);
+			float const z = sin(2 * PI * countSectors * SectorsRecip) * sin(PI * countRings * RingsRecip);
+
+			sphereMesh->m_TextureCoords[at].x = countSectors * SectorsRecip;
+			sphereMesh->m_TextureCoords[at].y = countRings * RingsRecip;
+
+			sphereMesh->m_Vertices[at].x = x * radius;
+			sphereMesh->m_Vertices[at].y = y;
+			sphereMesh->m_Vertices[at].z = z * radius;
+
+			sphereMesh->m_Colours[at] = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+
+			at++;
+		}
+	}
+
+	at = 0;
+	for (countRings = 0; countRings < rings - 1; countRings++) {
+		for (countSectors = 0; countSectors < sectors - 1; countSectors++) {
+			sphereMesh->m_Indices[at++] = (countRings + 0) * sectors + countSectors;				// added for half-symmetry
+			sphereMesh->m_Indices[at++] = (countRings + 0) * sectors + (countSectors + 1);
+			sphereMesh->m_Indices[at++] = (countRings + 1) * sectors + (countSectors + 1);
+			sphereMesh->m_Indices[at++] = (countRings + 0) * sectors + countSectors;
+			sphereMesh->m_Indices[at++] = (countRings + 1) * sectors + countSectors;
+			sphereMesh->m_Indices[at++] = (countRings + 1) * sectors + (countSectors + 1);			// since we're using GL_TRIANGLE with indices to draw the mesh
+		}
+	}
+
+	sphereMesh->BufferData();
+
+	return sphereMesh;
+}
+
+
+Mesh* Mesh::GenerateCubeMesh(Vector3 dim) {
+	Mesh* cube = new Mesh();
+	cube->m_Type = GL_TRIANGLES;
+	cube->m_NumVertices = 24;
+	cube->m_NumIndices = 36;
+	cube->m_Vertices = new Vector3[cube->m_NumVertices];
+	cube->m_Indices = new unsigned int[cube->m_NumIndices];
+	cube->m_Colours = new Vector4[cube->m_NumVertices];
+
+	std::vector<unsigned int> indices = {
+		// Front face
+		0, 1, 2, 2, 3, 0,
+		// Right face
+		7, 6, 5, 5, 4, 7,
+		// Back face
+		11, 10, 9, 9, 8, 11,
+		// Left face
+		15, 14, 13, 13, 12, 15,
+		// Top Face	
+		19, 18, 17, 17, 16, 19,
+		// Bottom Face
+		23, 22, 21, 21, 20, 23 };
+
+	for (int j = 0; j < indices.size(); j++) {
+		cube->m_Indices[j] = indices[j];
+	}
+
+	dim = dim / 2.0f;
+
+	//front
+	cube->m_Vertices[0] = Vector3(-1.0f, -1.0f, 1.0f)*dim;
+	cube->m_Vertices[1] = Vector3(1.0f, -1.0f, 1.0f)*dim;
+	cube->m_Vertices[2] = Vector3(1.0f, 1.0f, 1.0f)*dim;
+	cube->m_Vertices[3] = Vector3(-1.0f, 1.0f, 1.0f)*dim;
+
+	// Right face
+	cube->m_Vertices[4] = Vector3(1.0f, -1.0f, 1.0f)*dim;
+	cube->m_Vertices[5] = Vector3(1.0f, -1.0f, -1.0f)*dim;
+	cube->m_Vertices[6] = Vector3(1.0f, 1.0f, -1.0f)*dim;
+	cube->m_Vertices[7] = Vector3(1.0f, 1.0f, 1.0f)*dim;
+
+	// Back face
+	cube->m_Vertices[8] = Vector3(1.0f, -1.0f, -1.0f)*dim;
+	cube->m_Vertices[9] = Vector3(-1.0f, -1.0f, -1.0f)*dim;
+	cube->m_Vertices[10] = Vector3(-1.0f, 1.0f, -1.0f)*dim;
+	cube->m_Vertices[11] = Vector3(1.0f, 1.0f, -1.0f)*dim;
+
+	// Left face
+	cube->m_Vertices[12] = Vector3(-1.0f, -1.0f, -1.0f)*dim;
+	cube->m_Vertices[13] = Vector3(-1.0f, -1.0f, 1.0f)*dim;
+	cube->m_Vertices[14] = Vector3(-1.0f, 1.0f, 1.0f)*dim;
+	cube->m_Vertices[15] = Vector3(-1.0f, 1.0f, -1.0f)*dim;
+
+	// Top Face	
+	cube->m_Vertices[16] = Vector3(-1.0f, 1.0f, 1.0f)*dim;
+	cube->m_Vertices[17] = Vector3(1.0f, 1.0f, 1.0f)*dim;
+	cube->m_Vertices[18] = Vector3(1.0f, 1.0f, -1.0f)*dim;
+	cube->m_Vertices[19] = Vector3(-1.0f, 1.0f, -1.0f)*dim;
+
+	// Bottom Face
+	cube->m_Vertices[20] = Vector3(1.0f, -1.0f, 1.0f)*dim;
+	cube->m_Vertices[21] = Vector3(-1.0f, -1.0f, 1.0f)*dim;
+	cube->m_Vertices[22] = Vector3(-1.0f, -1.0f, -1.0f)*dim;
+	cube->m_Vertices[23] = Vector3(1.0f, -1.0f, -1.0f)*dim;
+
+	for (int i = 0; i < cube->m_NumVertices; i++) {
+		cube->m_Colours[i] = Vector4(0.0f, 0.0f, 1.0f, 1.0f); //blue
+	}
+
+	cube->BufferData();
+
+	return cube;
+}
+
+Mesh* Mesh::GenerateCubeMesh(Vector3 O, float len) {
+	Mesh* cube = new Mesh();
+	cube->m_Type = GL_TRIANGLES;
+	cube->m_NumVertices = 24;
+	cube->m_NumIndices = 36;
+	cube->m_Vertices = new Vector3[cube->m_NumVertices];
+	cube->m_Indices = new unsigned int[cube->m_NumIndices];
+	cube->m_Colours = new Vector4[cube->m_NumVertices];
+
+	std::vector<Vector3> vertices;
+	std::vector<Vector4> color;
+
+	std::vector<unsigned int> indices = {
+		// Front face
+		0, 1, 2, 2, 3, 0,
+		// Right face
+		7, 6, 5, 5, 4, 7,
+		// Back face
+		11, 10, 9, 9, 8, 11,
+		// Left face
+		15, 14, 13, 13, 12, 15,
+		// Top Face	
+		19, 18, 17, 17, 16, 19,
+		// Bottom Face
+		23, 22, 21, 21, 20, 23 };
+	//front
+
+	for (int j = 0; j < indices.size(); j++) {
+		cube->m_Indices[j] = indices[j];
+	}
+
+	float dim = len / 2.0f;
+
+
+	//front
+	cube->m_Vertices[0] = Vector3(O.x - dim, O.y - dim, O.z + dim);
+	cube->m_Vertices[1] = Vector3(O.x + dim, O.y - dim, O.z + dim);
+	cube->m_Vertices[2] = Vector3(O.x + dim, O.y + dim, O.z + dim);
+	cube->m_Vertices[3] = Vector3(O.x - dim, O.y + dim, O.z + dim);
+
+	// Right face
+	cube->m_Vertices[4] = Vector3(O.x + dim, O.y - dim, O.z + dim);
+	cube->m_Vertices[5] = Vector3(O.x + dim, O.y - dim, O.z - dim);
+	cube->m_Vertices[6] = Vector3(O.x + dim, O.y + dim, O.z - dim);
+	cube->m_Vertices[7] = Vector3(O.x + dim, O.y + dim, O.z + dim);
+
+	// Back face
+	cube->m_Vertices[8] = Vector3(O.x + dim, O.y - dim, O.z - dim);
+	cube->m_Vertices[9] = Vector3(O.x - dim, O.y - dim, O.z - dim);
+	cube->m_Vertices[10] = Vector3(O.x - dim, O.y + dim, O.z - dim);
+	cube->m_Vertices[11] = Vector3(O.x + dim, O.y + dim, O.z - dim);
+
+	// Left face
+	cube->m_Vertices[12] = Vector3(O.x - dim, O.y - dim, O.z - dim);
+	cube->m_Vertices[13] = Vector3(O.x - dim, O.y - dim, O.z + dim);
+	cube->m_Vertices[14] = Vector3(O.x - dim, O.y + dim, O.z + dim);
+	cube->m_Vertices[15] = Vector3(O.x - dim, O.y + dim, O.z - dim);
+
+	// Top Face	
+	cube->m_Vertices[16] = Vector3(O.x - dim, O.y + dim, O.z + dim);
+	cube->m_Vertices[17] = Vector3(O.x + dim, O.y + dim, O.z + dim);
+	cube->m_Vertices[18] = Vector3(O.x + dim, O.y + dim, O.z - dim);
+	cube->m_Vertices[19] = Vector3(O.x - dim, O.y + dim, O.z - dim);
+
+	// Bottom Face
+	cube->m_Vertices[20] = Vector3(O.x + dim, O.y - dim, O.z + dim);
+	cube->m_Vertices[21] = Vector3(O.x - dim, O.y - dim, O.z + dim);
+	cube->m_Vertices[22] = Vector3(O.x - dim, O.y - dim, O.z - dim);
+	cube->m_Vertices[23] = Vector3(O.x + dim, O.y - dim, O.z - dim);
+
+	for (int i = 0; i < cube->m_NumVertices; i++) {
+		cube->m_Colours[i] = Vector4(0.0f, 0.0f, 1.0f, 1.0f); //blue
+	}
+
+	cube->BufferData();
+
+	return cube;
+}
+
+Mesh* Mesh::GenAABB(std::vector<Vector3> triangle) {
+	GLfloat min_x, max_x, min_y, max_y, min_z, max_z;
+	min_x = max_x = triangle[0].x;
+	min_y = max_y = triangle[0].y;
+	min_z = max_z = triangle[0].z;
+
+	for (int i = 0; i < triangle.size(); i++) {
+		if (triangle[i].x < min_x) min_x = triangle[i].x;
+		if (triangle[i].x > max_x) max_x = triangle[i].x;
+		if (triangle[i].y < min_y) min_y = triangle[i].y;
+		if (triangle[i].y > max_y) max_y = triangle[i].y;
+		if (triangle[i].z < min_z) min_z = triangle[i].z;
+		if (triangle[i].z > max_z) max_z = triangle[i].z;
+	}
+
+	Vector3 size = Vector3(max_x - min_x, max_y - min_y, max_z - min_z);
+	Vector3 centre = Vector3((min_x + max_x) / 2.0f, (min_y + max_y) / 2.0f, (min_z + max_z) / 2.0f);
+
+	//rescale and centre
+	//Matrix4 transform = Matrix4::Translation(centre) * Matrix4::Scale(size);
+
+	Mesh* aabb = new Mesh();
+	aabb = Mesh::GenerateCubeMesh(size);
+	return aabb;
+}
+
+Mesh* Mesh::GenAABB(Vector3* verts, int numverts) {
+	GLfloat min_x, max_x, min_y, max_y, min_z, max_z;
+
+	min_x = max_x = verts[0].x;
+	min_y = max_y = verts[0].y;
+	min_z = max_z = verts[0].z;
+
+	for (int i = 0; i < numverts; i++) {
+		if (verts[i].x < min_x) min_x = verts[i].x;
+		if (verts[i].x > max_x) max_x = verts[i].x;
+		if (verts[i].y < min_y) min_y = verts[i].y;
+		if (verts[i].y > max_y) max_y = verts[i].y;
+		if (verts[i].z < min_z) min_z = verts[i].z;
+		if (verts[i].z > max_z) max_z = verts[i].z;
+	}
+
+	Vector3 size = Vector3(max_x - min_x, max_y - min_y, max_z - min_z);
+	Vector3 centre = Vector3((min_x + max_x) / 2.0f, (min_y + max_y) / 2.0f, (min_z + max_z) / 2.0f);
+
+	//rescale and centre
+	//Matrix4 transform = Matrix4::Translation(centre) * Matrix4::Scale(size);
+
+	Mesh* aabb = new Mesh();
+	aabb = Mesh::GenerateCubeMesh(centre, size.x);
+	return aabb;
+}
+
+Mesh* Mesh::GenerateTiltedTriangle(float scale) {
+	Mesh*m = new Mesh();
+	m->m_NumVertices = 3;
+
+	m->m_Vertices = new Vector3[m->m_NumVertices];
+	m->m_Vertices[0] = Vector3(0.0f, 0.5f, 1.0f)		* scale;
+	m->m_Vertices[1] = Vector3(0.5f, -0.5f, -1.0f)	* scale;
+	m->m_Vertices[2] = Vector3(-0.5f, -0.5f, -1.0f)	* scale;
+
+	m->m_TextureCoords = new Vector2[m->m_NumVertices];
+	m->m_TextureCoords[0] = Vector2(0.5f, 0.0f);
+	m->m_TextureCoords[1] = Vector2(1.0f, 1.0f);
+	m->m_TextureCoords[2] = Vector2(0.0f, 1.0f);
+
+	m->m_Colours = new Vector4[m->m_NumVertices];
+	m->m_Colours[0] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+	m->m_Colours[1] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+	m->m_Colours[2] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+
+	m->BufferData();
+
+	return m;
 }
 
 Mesh* Mesh::GenerateQuad() {
