@@ -35,60 +35,60 @@ Mesh::~Mesh() {
 }
 
 
-Mesh*	Mesh::LoadMeshFile(const string &filename) {
-	ifstream f(filename);
-
-	if (!f) {
-		return NULL;
-	}
-
-	Mesh*m = new Mesh();
-	f >> m->m_NumVertices;
-
-	int hasTex = 0;
-	int hasColour = 0;
-
-	f >> hasTex;
-	f >> hasColour;
-
-	m->m_Vertices = new Vector3[m->m_NumVertices];
-
-	if (hasTex) {
-		m->m_TextureCoords = new Vector2[m->m_NumVertices];
-		m->m_Colours = new Vector4[m->m_NumVertices];
-	}
-
-	for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
-		f >> m->m_Vertices[i].x;
-		f >> m->m_Vertices[i].y;
-		f >> m->m_Vertices[i].z;
-	}
-
-	if (hasColour) {
-		for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
-			unsigned int r, g, b, a;
-
-			f >> r;
-			f >> g;
-			f >> b;
-			f >> a;
-			//OpenGL can use floats for colours directly - this will take up 4x as
-			//much space, but could avoid any byte / float conversions happening
-			//behind the scenes in our shader executions
-			m->m_Colours[i] = Vector4(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
-		}
-	}
-
-	if (hasTex) {
-		for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
-			f >> m->m_TextureCoords[i].x;
-			f >> m->m_TextureCoords[i].y;
-		}
-	}
-
-	m->BufferData();
-	return m;
-}
+//Mesh*	Mesh::LoadMeshFile(const string &filename) {
+//	ifstream f(filename);
+//
+//	if (!f) {
+//		return NULL;
+//	}
+//
+//	Mesh*m = new Mesh();
+//	f >> m->m_NumVertices;
+//
+//	int hasTex = 0;
+//	int hasColour = 0;
+//
+//	f >> hasTex;
+//	f >> hasColour;
+//
+//	m->m_Vertices = new Vector3[m->m_NumVertices];
+//
+//	if (hasTex) {
+//		m->m_TextureCoords = new Vector2[m->m_NumVertices];
+//		m->m_Colours = new Vector4[m->m_NumVertices];
+//	}
+//
+//	for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
+//		f >> m->m_Vertices[i].x;
+//		f >> m->m_Vertices[i].y;
+//		f >> m->m_Vertices[i].z;
+//	}
+//
+//	if (hasColour) {
+//		for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
+//			unsigned int r, g, b, a;
+//
+//			f >> r;
+//			f >> g;
+//			f >> b;
+//			f >> a;
+//			//OpenGL can use floats for colours directly - this will take up 4x as
+//			//much space, but could avoid any byte / float conversions happening
+//			//behind the scenes in our shader executions
+//			m->m_Colours[i] = Vector4(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+//		}
+//	}
+//
+//	if (hasTex) {
+//		for (unsigned int i = 0; i < m->m_NumVertices; ++i) {
+//			f >> m->m_TextureCoords[i].x;
+//			f >> m->m_TextureCoords[i].y;
+//		}
+//	}
+//
+//	m->BufferData();
+//	return m;
+//}
 
 Mesh* Mesh::GenerateTriangle() {
 	Mesh* mesh = new Mesh();
@@ -195,6 +195,8 @@ Mesh* Mesh::GenerateSphereMesh(float radius, unsigned int rings, unsigned int se
 		}
 	}
 
+	sphereMesh->GenerateNormals();
+	sphereMesh->GenerateTangents();
 	sphereMesh->BufferData();
 
 	return sphereMesh;

@@ -25,7 +25,8 @@ protected:
 	Matrix4		GenerateInverseProjection(float aspect, float fov);
 	Matrix4		GenerateInverseView(Camera &c);
 
-	OBJMesh*	cube;
+	//OBJMesh*	cube;
+	Mesh* cube;
 	Camera*		camera;
 	Mesh*		triangle;
 	SceneNode*	root;

@@ -33,10 +33,11 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	SetTextureRepeating(heightMap->GetTexture(), true);
 	SetTextureRepeating(heightMap->GetBumpMap(), true);
 
-	sphere = new  OBJMesh();
-	if (!sphere->LoadOBJMesh(MESHDIR"ico.obj")) {
+	//sphere = new  OBJMesh();
+	sphere = Mesh::GenerateSphereMesh(2, 5, 5);
+	/*if (!sphere->LoadOBJMesh(MESHDIR"ico.obj")) {
 		return;
-	}
+	}*/
 
 	sceneShader = new  Shader(SHADERDIR"Test_15_BumpVertex.glsl", SHADERDIR"Test_15_BufferFrag.glsl");
 	if (!sceneShader->LinkProgram()) {
@@ -85,8 +86,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 		GL_TEXTURE_2D, lightSpecularTex, 0);
 	glDrawBuffers(2, buffers);
 
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) !=
-		GL_FRAMEBUFFER_COMPLETE) {
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 		return;
 
 	}
@@ -192,8 +192,7 @@ void  Renderer::DrawPointLights() {
 
 	glUniform2f(glGetUniformLocation(currentShader->GetProgram(), "pixelSize"), 1.0f / width, 1.0f / height);
 
-	Vector3  translate = Vector3((RAW_HEIGHT*HEIGHTMAP_X / 2.0f), 500,
-		(RAW_HEIGHT*HEIGHTMAP_Z / 2.0f));
+	Vector3  translate = Vector3((RAW_HEIGHT*HEIGHTMAP_X / 2.0f), 500, (RAW_HEIGHT*HEIGHTMAP_Z / 2.0f));
 
 	Matrix4  pushMatrix = Matrix4::Translation(translate);
 	Matrix4  popMatrix = Matrix4::Translation(-translate);

@@ -18,7 +18,7 @@ public:
 	void SetBumpMap(GLuint tex)   { bumpTexture = tex; }
 	GLuint GetBumpMap()			  { return bumpTexture; }
 
-	static Mesh*	LoadMeshFile(const string &filename);
+	//static Mesh*	LoadMeshFile(const string &filename);
 
 	static Mesh*	GeneratePointArray(float width, float height);
 

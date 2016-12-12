@@ -27,7 +27,8 @@ protected:
 
 	Light*    pointLights;           // Array of  lighting  data
 	HeightMap*     heightMap;             // Terrain!
-	OBJMesh* sphere;                 // Light  volume
+	//OBJMesh* sphere;                 // Light  volume
+	Mesh* sphere;
 	Mesh*     quad;                   //To draw a full -screen  quad
 	Camera*   camera;                 //Our  usual  camera
 
