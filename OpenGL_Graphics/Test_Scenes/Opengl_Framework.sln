@@ -94,6 +94,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 18 - Drawing_Text"
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 19 - Geometry_Shaders", "Test_017_Geometry_Shaders\Geometry.vcxproj", "{867248B2-6D91-45C4-B4CE-64AD14C4D373}"
+	ProjectSection(ProjectDependencies) = postProject
+		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {98D6B51B-CB0A-4389-ADC6-24082B967C3F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 20 - Texture_Atlas", "Test_018_Texture_Atlas\Extra - Texture Atlas.vcxproj", "{5E152084-769D-459E-B59A-C8F05E165612}"
 EndProject

@@ -177,7 +177,7 @@ Mesh* Mesh::GenerateSphereMesh(float radius, unsigned int rings, unsigned int se
 			sphereMesh->m_Vertices[at].y = y;
 			sphereMesh->m_Vertices[at].z = z * radius;
 
-			sphereMesh->m_Colours[at] = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+			sphereMesh->m_Colours[at] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
 			at++;
 		}

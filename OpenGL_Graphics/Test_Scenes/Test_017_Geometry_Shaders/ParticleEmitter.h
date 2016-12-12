@@ -40,10 +40,10 @@ _-_-_-_-_-_-_-""  ""
 
 
 #pragma once
-#include "../../NCLGL/Vector3.h"
-#include "../../NCLGL/Vector4.h"
-#include "../../NCLGL/OGLRenderer.h"
-#include "../../NCLGL/Mesh.h"
+#include <Vector3.h>
+#include <Vector4.h>
+#include <OGLRenderer.h>
+#include <Mesh.h>
 #include <vector>
 
 struct Particle {
