@@ -1,8 +1,8 @@
 #pragma once
 
-#include "./NCLGL/OGLRenderer.h"
-#include "./NCLGL/Mesh.h"
-#include "./NCLGL/camera.h"
+#include <OGLRenderer.h>
+#include <Mesh.h>
+#include <camera.h>
 
 #include "textureAtlas.h"
 

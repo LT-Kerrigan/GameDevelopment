@@ -23,7 +23,7 @@ atlas. These 4!
 */
 string textures[4] = {
 	TEXTUREDIR"brick.tga",
-	TEXTUREDIR"Barren reds.jpg",
+	TEXTUREDIR"BarrenReds.jpg",
 	TEXTUREDIR"hellknight.tga",
 	TEXTUREDIR"hellknight_local.tga"
 };
@@ -49,9 +49,8 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	basicShader = new Shader(SHADERDIR"TexturedVertex.glsl", SHADERDIR"TexturedFragment.glsl");
 	atlasShader = new Shader("AtlasVertex.glsl", SHADERDIR"TexturedFragment.glsl");
 
-	if(!basicShader->LinkProgram() ||
-	   !atlasShader->LinkProgram()) {
-		return;
+	if(!basicShader->LinkProgram() || !atlasShader->LinkProgram()) {
+	//	return;
 	}
 
 	//We need a camera!

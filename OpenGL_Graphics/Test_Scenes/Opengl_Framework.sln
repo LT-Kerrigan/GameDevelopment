@@ -99,6 +99,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 19 - Geometry_Shad
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 20 - Texture_Atlas", "Test_018_Texture_Atlas\Extra - Texture Atlas.vcxproj", "{5E152084-769D-459E-B59A-C8F05E165612}"
+	ProjectSection(ProjectDependencies) = postProject
+		{98D6B51B-CB0A-4389-ADC6-24082B967C3F} = {98D6B51B-CB0A-4389-ADC6-24082B967C3F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial 02 - View Matrix B", "Test_002_ViewMatrix_B\Test_02_ViewMatrix.vcxproj", "{75E54DCC-DCDA-4D9F-9836-7B0DD6E10472}"
 	ProjectSection(ProjectDependencies) = postProject
