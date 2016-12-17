@@ -21,10 +21,10 @@ uniform mat3 normal_matrix;
 
 // this approach allows for reflection vector to be computed in fragment shader
 void main(){
-  gl_Position = mvp_matrix * mc_vertex; //transform current incoming vertex position from model space to world space
-  normal      = normalize(normal_matrix * mc_normal);
-  vec4 pos    = mv_matrix * mc_vertex;
-  eye_dir     = pos.xyz;
-  vec3 light_dir = normalize(light_position - eye_dir);
+  gl_Position     = mvp_matrix * mc_vertex; //transform current incoming vertex position from model space to world space
+  normal          = normalize(normal_matrix * mc_normal);
+  vec4 pos        = mv_matrix * mc_vertex;
+  eye_dir         = pos.xyz;
+  vec3 light_dir  = normalize(light_position - eye_dir);
   light_intensity = max(dot(light_dir, normal), 0.0);
 }
