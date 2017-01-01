@@ -7,6 +7,7 @@ uniform vec2 brick_pct;
 in vec2 mc_position;
 in vec2 light_intensity;
 
+//not going to rely on gl_FragColor
 out vec4 frag_color;
 
 void main() {
