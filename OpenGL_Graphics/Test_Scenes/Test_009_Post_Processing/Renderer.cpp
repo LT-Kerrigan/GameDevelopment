@@ -3,6 +3,7 @@
 Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	camera = new Camera(-30.0f, 180.0f, Vector3(0.0f, -1500.0f, 0.0f));
 	quad = Mesh::GenerateQuad();
+	quad_corner = Mesh::GenerateQuad();
 
 	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
 	heightMap->SetTexture(SOIL_load_OGL_texture(TEXTUREDIR"BarrenReds.JPG", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
@@ -39,9 +40,18 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	}
 
+	glGenTextures(1, &debugColorTex);
+	glBindTexture(GL_TEXTURE_2D, debugColorTex);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 800, 600, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+
 	// set up buffer for scene rendering and post processing
 	glGenFramebuffers(1, &bufferFBO);
 	glGenFramebuffers(1, &processFBO);
+	glGenFramebuffers(1, &debugbufferFBO);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, bufferFBO);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, bufferDepthTex, 0);
@@ -81,8 +91,27 @@ void Renderer::RenderScene() {
 	DrawScene();
 	DrawPostProcess();
 	PresentScene();
+DrawDebugTexture();
 	SwapBuffers();
 }
+
+void Renderer::DrawDebugTexture() {
+	// Blit from fbo...
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, bufferFBO);
+	// ...to the front buffer.
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, GL_FRONT);
+
+	GLsizei HalfWindowWidth  = (GLsizei)(width/4.0f);
+	GLsizei HalfWindowHeight = (GLsizei)(height/4.0f);
+
+	// Blit attachment 0 to the lower-left quadrant of the window
+	glReadBuffer(GL_COLOR_ATTACHMENT0);
+	glBlitFramebuffer(0, 0, width, height, 0, 0, HalfWindowWidth, HalfWindowHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+
+	// Blit attachment 1 to the lower-right quadrant of the window
+	//glReadBuffer(GL_COLOR_ATTACHMENT1);
+	//glBlitFramebuffer(0, 0, width, height, HalfWindowWidth, 0, width, HalfWindowHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+};
 
 void Renderer::DrawScene() {
 	glBindFramebuffer(GL_FRAMEBUFFER, bufferFBO);

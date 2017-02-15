@@ -19,14 +19,21 @@ protected:
 	void DrawPostProcess();
 	void DrawScene();
 
+	void DrawDebugTexture();
+
 	Shader*    sceneShader;
 	Shader*    combineShader;
 	Camera*    camera;
 	Mesh*      quad;
+	Mesh*	   quad_corner;
 	HeightMap* heightMap;
 
 	GLuint bufferFBO;
 	GLuint processFBO;
 	GLuint bufferColourTex[2];
 	GLuint bufferDepthTex;
+
+	GLuint debugbufferFBO;
+	GLuint debugColorTex;
+	GLuint debugdepthTex;
 };
