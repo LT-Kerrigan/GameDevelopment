@@ -5,7 +5,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	camera = new Camera(-8.0f, 40.0f, Vector3(-200.0f, 50.0f, 250.0f));
 	light = new Light(Vector3(-450.0f, 200.0f, 280.0f), Vector4(1, 1, 1, 1), 5500.0f);
 
-	hellData = new MD5FileData(TEXTUREDIR"hellknight.md5mesh");
+	hellData = new MD5FileData(MESHDIR"hellknight.md5mesh");
 	hellNode = new MD5Node(*hellData);
 
 	hellData->AddAnim(MESHDIR"idle2.md5anim");
@@ -46,6 +46,8 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent) {
 	glEnable(GL_DEPTH_TEST);
 
 	projMatrix = Matrix4::Perspective(1.0f, 15000.0f, (float)width / (float)height, 45.0f);
+
+	modelMatrix.ToIdentity();
 
 	init = true;
 }
