@@ -21,10 +21,10 @@ void Camera::UpdateCamera(float msec) {
 		m_Position += Matrix4::Rotation(m_Yaw, Vector3(0.0f, 1.0f, 0.0f)) * Vector3(0.0f, 0.0f, -1.0f) * msec;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_A)) {
-		m_Position -= Matrix4::Rotation(m_Yaw, Vector3(0.0f, 1.0f, 0.0f)) * Vector3(-1.0f, 0.0f, 0.0f) * msec;
+		m_Position += Matrix4::Rotation(m_Yaw, Vector3(0.0f, 1.0f, 0.0f)) * Vector3(-1.0f, 0.0f, 0.0f) * msec;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_D)) {
-		m_Position += Matrix4::Rotation(m_Yaw, Vector3(0.0f, 1.0f, 0.0f)) * Vector3(-1.0f, 0.0f, 0.0f) * msec;
+		m_Position -= Matrix4::Rotation(m_Yaw, Vector3(0.0f, 1.0f, 0.0f)) * Vector3(-1.0f, 0.0f, 0.0f) * msec;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_SHIFT)) {
 		m_Position.y += msec;
@@ -35,5 +35,5 @@ void Camera::UpdateCamera(float msec) {
 };
 
 Matrix4 Camera::BuildViewMatrix() {
-	return Matrix4::Rotation(-m_Pitch, Vector3(1, 0, 0)) * Matrix4::Rotation(-m_Yaw, Vector3(0, 1, 0)) * Matrix4::Translation(m_Position);
+	return Matrix4::Rotation(-m_Pitch, Vector3(1, 0, 0)) * Matrix4::Rotation(-m_Yaw, Vector3(0, 1, 0)) * Matrix4::Translation(-m_Position);
 };

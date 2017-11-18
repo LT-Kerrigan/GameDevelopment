@@ -26,6 +26,7 @@ protected:
 	Camera*    camera;
 	Mesh*      quad;
 	Mesh*	   quad_corner;
+	Mesh*		testingloader;
 	HeightMap* heightMap;
 
 	GLuint bufferFBO;

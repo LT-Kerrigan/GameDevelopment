@@ -539,6 +539,24 @@ void Mesh::Draw() {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+void Mesh::DrawInstanced(unsigned int instances, GLuint dataVBO, Vector3* positions) {
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, m_Texture);
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, bumpTexture);
+
+	glBindVertexArray(m_ArrayObject);
+	
+	//upload the instance data
+	glBindBuffer(GL_ARRAY_BUFFER, dataVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vector3) * instances, &positions, GL_DYNAMIC_DRAW);
+	glDrawElementsInstanced(m_Type, m_NumVertices, GL_UNSIGNED_INT, 0, instances);
+
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 void Mesh::GenerateNormals(){
 	if (!m_Normals) {
 		m_Normals = new Vector3[m_NumVertices];

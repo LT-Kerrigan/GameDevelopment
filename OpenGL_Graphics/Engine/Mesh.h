@@ -9,6 +9,8 @@ public:
 	~Mesh();
 
 	virtual void Draw();
+	virtual void DrawInstanced(unsigned int instances, GLuint VBO, Vector3* positions);
+
 	static Mesh* GenerateTriangle();
 	static Mesh* GenerateQuad();
 
@@ -34,12 +36,13 @@ public:
 
 	static Mesh* GenerateTiltedTriangle(float scale);
 
-protected:
 	void BufferData();
 
 	void GenerateNormals();
 
 	void GenerateTangents();
+
+protected:
 	
 	Vector3 GenerateTangent(const Vector3 &a, const Vector3 &b,
 							const Vector3 &c, const Vector2 &ta,

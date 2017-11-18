@@ -91,7 +91,7 @@ OGLRenderer::OGLRenderer(Window &window)	{
 		return;
 	}
 
-	if(major == 3 && minor < 2) {	//Graphics hardware does not support ENOUGH of OGL 3! Erk...
+	if(major == 4 && minor < 5) {	//Graphics hardware does not support ENOUGH of OGL 3! Erk...
 		std::cout << "OGLRenderer::OGLRenderer(): Device does not support OpenGL 3.2!" << std::endl;
 		wglDeleteContext(tempContext);
 		return;
